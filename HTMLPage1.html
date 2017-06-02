@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+
+    <script src="jquery-3.2.1.js"></script>
+    <script src="jquery.maze.js"></script>
+    <!--img src="User.png" /-->
+    <canvas id="myCanvas" width="800" height="600" style="border:1px solid black;"></canvas>
+    <script>
+        var canvas = document.getElementById("myCanvas");
+        for (var i = 0; i<10; i++) {
+            for (var j = 0; j < 10; j++) {
+                var ctx = canvas.getContext("2d");
+                ctx.strokeStyle = "red";
+                ctx.strokeRect(i * canvas.width / 10, j * canvas.height / 10, canvas.width / 10, canvas.height / 10);
+            }
+        }
+        //var ctx = canvas.getContext("2d");
+        //ctx.strokeStyle = "red";
+        //ctx.strokeRect(0, 0, 50, 50);
+        //ctx.moveTo(0, 0); 
+        //ctx.lineTo(100, 100); 
+        //ctx.stroke();
+    </script>
+    <p> paragraph </p>
+    <script>
+        $("p").html("Hello from jQuery").css("color", "blue"); 
+    </script>
+
+    <script> 
+        $("img").makeEqualSize(); 
+    </script>
+
+</body>
+</html>
