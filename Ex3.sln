@@ -8,6 +8,12 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{315B49E4-23F6-476E-A22A-1E21C6106AA5}"
 	ProjectSection(SolutionItems) = preProject
 		HomePage.html = HomePage.html
+		Login.html = Login.html
+		MultiPlayer.html = MultiPlayer.html
+		Rankings.html = Rankings.html
+		Register.html = Register.html
+		Settings.html = Settings.html
+		SinglePlayer.html = SinglePlayer.html
 	EndProjectSection
 EndProject
 Global
