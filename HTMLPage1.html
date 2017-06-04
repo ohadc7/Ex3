@@ -10,16 +10,31 @@
     <script src="jquery-3.2.1.js"></script>
     <script src="jquery.maze.js"></script>
     <!--img src="User.png" /-->
-    <canvas id="myCanvas" width="800" height="600" style="border:1px solid black;"></canvas>
+    <canvas id="maze" width="800" height="600"></canvas>
+    
+    <div style="color:#0000FF">
+        <h3>This is a heading</h3>
+    </div>
+
+    <script src="jquery.maze.js"></script>
+    <script src="pluginExample.js"></script>
+
+    <canvas id="mazeCanvas" width="300" height="300" style="border:2px black solid"></canvas>
+
     <script>
-        var canvas = document.getElementById("myCanvas");
-        for (var i = 0; i<10; i++) {
-            for (var j = 0; j < 10; j++) {
-                var ctx = canvas.getContext("2d");
-                ctx.strokeStyle = "red";
-                ctx.strokeRect(i * canvas.width / 10, j * canvas.height / 10, canvas.width / 10, canvas.height / 10);
-            }
-        }
+        $('.cls-title').myFirstPlugin({ text : 'Argument Title' });
+    </script>
+
+    <script  src="drawMaze.js"></script>
+    <script>
+        maze = [[0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0],
+                [0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 0],
+                [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0]];
+        drawMaze(maze);
+    </script>
+
+    <script>
+
         //var ctx = canvas.getContext("2d");
         //ctx.strokeStyle = "red";
         //ctx.strokeRect(0, 0, 50, 50);
@@ -27,6 +42,7 @@
         //ctx.lineTo(100, 100); 
         //ctx.stroke();
     </script>
+
     <p> paragraph </p>
     <script>
         $("p").html("Hello from jQuery").css("color", "blue"); 
