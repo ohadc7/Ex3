@@ -1,25 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26228.9
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ex3", "Ex3\Ex3.csproj", "{9839C2FB-ACB4-4032-BD54-AAC0BC22DFFE}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{315B49E4-23F6-476E-A22A-1E21C6106AA5}"
-	ProjectSection(SolutionItems) = preProject
-		HomePage.html = HomePage.html
-		HTMLPage3-debug.html = HTMLPage3-debug.html
-		HTMLPage6-debug.html = HTMLPage6-debug.html
-		jquery-3.2.1.js = jquery-3.2.1.js
-		jQuery.mazeBoard.js = jQuery.mazeBoard.js
-		Login.html = Login.html
-		mazeClass.js = mazeClass.js
-		MultiPlayer.html = MultiPlayer.html
-		Rankings.html = Rankings.html
-		Register.html = Register.html
-		Settings.html = Settings.html
-		SinglePlayer.html = SinglePlayer.html
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
