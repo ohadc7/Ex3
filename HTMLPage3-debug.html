@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <script src = "Ex3\Scripts\jquery-3.2.1.js"> </script>
+    <canvas id="mazeCanvasName" width="300" height="90" style="border:2px black solid"></canvas>
+    <img src="User.png" id="user" style="display: none;"/>
+    <img src="End.jpg" id="end" style="display: none;"/>
+
+    
+    <script src = "jQuery.mazeBoard.js"> </script>
+
+    <script>
+		maze2dArray =  [[0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0],
+                        [0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 0],
+                        [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0]];
+        $('#mazeCanvasName').mazeBoard('mazeBoard', maze2dArray, 0,0 , 2,9 , user, end);
+        $('#mazeCanvasName').mazeBoard('drawMaze');
+    </script>
+    
+</body>
+</html>
