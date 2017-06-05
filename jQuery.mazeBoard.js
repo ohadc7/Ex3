@@ -1,6 +1,7 @@
 /*
 * credit: thanks to the first answer in
 * https://stackoverflow.com/questions/1117086/how-to-create-a-jquery-plugin-with-methods/22976877#22976877
+* and to https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent
 */
 
 (function( $ ){
@@ -35,15 +36,53 @@
 					}
 				}
 			}
-			const goalPosRow = $(this).data("exitPos").row;
-			const goalPosCol = $(this).data("exitPos").col;
-			const currPosRow = $(this).data("playerPos").row;
-			const currPosCol = $(this).data("playerPos").col;
+			goalPosRow = $(this).data("exitPos").row;
+			goalPosCol = $(this).data("exitPos").col;
+			currPosRow = $(this).data("playerPos").row;
+			currPosCol = $(this).data("playerPos").col;
 			
 			window.onload = function() {
 				context.drawImage(userImg, currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
         		context.drawImage(endImg, goalPosCol * cellWidth, goalPosRow * cellHeight, cellWidth, cellHeight);
 			}
+
+			'use strict';
+			document.addEventListener('keydown', (event) => {
+				const keyName = event.key;
+				switch(keyName) {
+					case "ArrowDown":
+						if (currPosRow + 1 < rows && maze[currPosRow + 1][currPosCol] != 1) {
+							context.clearRect(currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
+							currPosRow++;
+							context.drawImage(userImg, currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
+						}
+						break;
+					case "ArrowUp":
+						if (currPosRow - 1 >= 0 && maze[currPosRow - 1][currPosCol] != 1) {
+							context.clearRect(currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
+							currPosRow--;
+							context.drawImage(userImg, currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
+						}
+						break;
+					case "ArrowLeft":
+						if (currPosCol - 1 >= 0 && maze[currPosRow][currPosCol - 1] != 1) {
+							context.clearRect(currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
+							currPosCol--;
+							context.drawImage(userImg, currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
+						}
+						break;
+					case "ArrowRight":
+						if (currPosCol + 1 < cols && maze[currPosRow][currPosCol + 1] != 1) {
+							context.clearRect(currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
+							currPosCol++;
+							context.drawImage(userImg, currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
+						}
+						break;
+					default:
+						return; // Quit when this doesn't handle the key event.
+				}
+			}, false);
+
 		},
 
         hide : function( ) {  },
