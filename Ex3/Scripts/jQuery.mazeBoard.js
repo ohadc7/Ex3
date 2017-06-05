@@ -10,8 +10,7 @@
         mazeBoard : function(mazeData, startRow, startCol, exitRow, exitCol, playerImage, exitImage //rows, cols, initialPos, goalPos
 																									) {
 			$(this).data("mazeData", mazeData);
-			$(this).data("startPos", {row: startRow, col: startCol});
-			$(this).data("playerPos", {row: startRow, col: startCol});
+			$(this).data("playerStartPos", {row: startRow, col: startCol});
 			$(this).data("exitPos", {row: exitRow, col: exitCol});
 			$(this).data("playerImage", playerImage);
 			$(this).data("exitImage", exitImage);		
@@ -38,8 +37,8 @@
 			}
 			goalPosRow = $(this).data("exitPos").row;
 			goalPosCol = $(this).data("exitPos").col;
-			currPosRow = $(this).data("playerPos").row;
-			currPosCol = $(this).data("playerPos").col;
+			currPosRow = $(this).data("playerStartPos").row;
+			currPosCol = $(this).data("playerStartPos").col;
 			
 			window.onload = function() {
 				context.drawImage(userImg, currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
