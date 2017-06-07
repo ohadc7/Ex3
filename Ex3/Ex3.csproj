@@ -112,14 +112,31 @@
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
+    <Compile Include="Controllers\GenerateMaze.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CloseCommand.cs" />
+    <Compile Include="Models\CommandParser.cs" />
+    <Compile Include="Models\Controller.cs" />
+    <Compile Include="Models\GenerateMazeCommand.cs" />
+    <Compile Include="Models\ICommand.cs" />
+    <Compile Include="Models\IController.cs" />
+    <Compile Include="Models\IModel.cs" />
+    <Compile Include="Models\JoinCommand.cs" />
+    <Compile Include="Models\ListCommand.cs" />
+    <Compile Include="Models\Model.cs" />
+    <Compile Include="Models\MultiPlayerDS.cs" />
+    <Compile Include="Models\MultiPlayerGameController.cs" />
+    <Compile Include="Models\PacketStream.cs" />
+    <Compile Include="Models\PlayCommand.cs" />
+    <Compile Include="Models\SinglePlayerGame.cs" />
+    <Compile Include="Models\SolveCommand.cs" />
+    <Compile Include="Models\StartCommand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
