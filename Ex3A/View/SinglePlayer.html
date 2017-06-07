@@ -51,6 +51,21 @@
                     <label for="mazeName" class="col-sm-2 control-label"></label>
                     <div class="col-sm-10">
                         <button class="btn btn-default">Start Game</button>
+                        <script>
+                        $("#btnStart").click(function () {
+                            var name = $("#txtMazeName").val();
+                            var cols = $("#txtMazeCols").val();
+                            var rows = $("#txtMazeRows").val();
+
+                            $.getJSON(apiUrl + "/" + name + "/" + cols + "/" + rows)
+                            .done(function (product) {
+                            $("#generateMaze").text(product.Name + ": $" + product.Price);
+                        })
+                        .fail(function (jqXHR, textStatus, err) {
+                            $("#product").text("Error: " + err);
+                            });
+                        });
+                        </script>
                     </div>
                 </div>
 
@@ -76,6 +91,8 @@
                     <label for="mazeName" class="col-sm-2 control-label"></label>
                     <div class="col-sm-10">
                         <button class="btn btn-default">Solve Game</button>
+                        
+
                     </div>
                 </div>
 
