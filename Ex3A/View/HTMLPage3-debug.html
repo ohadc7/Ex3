@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+<script>
+/*
+'use strict';
+
+document.addEventListener('keydown', (event) => {
+  const keyName = event.key;
+
+  if (keyName === 'Control') {
+    // not alert when only Control key is pressed.
+    return;
+  }
+
+  if (event.ctrlKey) {
+    // Even though event.key is not 'Control' (i.e. 'a' is pressed),
+    // event.ctrlKey may be true if Ctrl key is pressed at the time.
+    alert(`Combination of ctrlKey + ${keyName}`);
+  } else {
+    alert(`Key pressed ${keyName}`);
+  }
+}, false);
+
+document.addEventListener('keyup', (event) => {
+  const keyName = event.key;
+
+  // As the user release the Ctrl key, the key is no longer active.
+  // So event.ctrlKey is false.
+  if (keyName === 'Control') {
+    alert('Control key was released');
+  }
+}, false);
+*/
+</script>
+</head>
+<body>
+    <script src = "../Scripts/jquery-3.2.1.min.js"> </script>
+    <canvas id="mazeCanvasName" width="300" height="90" style="border:2px black solid"></canvas>
+    <img src="User.png" id="user" style="display: none;"/>
+    <img src="End.jpg" id="end" style="display: none;"/>
+
+    
+    <script src = "../Scripts/jQuery.mazeBoard.js"> </script>
+
+    <script>
+		maze2dArray =  [[0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0],
+                        [0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 0],
+                        [0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0]];
+        $('#mazeCanvasName').mazeBoard('mazeBoard', maze2dArray, 0,0 , 2,9 , user, end);
+        $('#mazeCanvasName').mazeBoard('drawMaze');
+    </script>
+    
+</body>
+</html>
