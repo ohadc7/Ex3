@@ -24,7 +24,7 @@ namespace Ex3A
             config.Routes.MapHttpRoute(
               name: "DefaultApi2",
               //routeTemplate: "api/{controller}/{id}",
-              routeTemplate: "api/{name}/{rows}/{cols}",
+              routeTemplate: "api/{controller}/{name}/{rows}/{cols}",
               defaults: new { id = RouteParameter.Optional }
           );
         }

@@ -1,4 +1,6 @@
 ﻿using MazeGeneratorLib;
+using MazeLib;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,24 +12,32 @@ namespace Ex3A.Controllers
 {
     public class GenerateController : ApiController
     {
-        /* private static List<Product> products = new List<Product> {
-             new Product { Id = 1, Name = "Tomato Soup", Category = "Groceries", Price = 1 },
-             new Product { Id = 2, Name = "Yo-yo", Category = "Toys", Price = 3.75M },
-             new Product { Id = 3, Name = "Hammer", Category = "Hardware", Price = 16.99M }
-         };*/
+        /*
+         private static List<Maze> mazesList = new List<Maze> {
+             //new Product { Id = 1, Name = "Tomato Soup", Category = "Groceries", Price = 1 },
+             //new Product { Id = 2, Name = "Yo-yo", Category = "Toys", Price = 3.75M },
+             //new Product { Id = 3, Name = "Hammer", Category = "Hardware", Price = 16.99M }
+         };
+         */
         /*  public IEnumerable<Product> GetAllProducts()
           {
               return products;
           }*/
-      
-        public IHttpActionResult GetGenerateMaze(string name, int rows, int cols)
+
+        public string GetGenerateMaze(string name, int rows, int cols)
         {
             var dfsMazeGenerator = new DFSMazeGenerator();
-            var MyMaze = dfsMazeGenerator.Generate(rows, cols);
+            Maze MyMaze = dfsMazeGenerator.Generate(rows, cols);
             MyMaze.Name = name;
-           // DictionaryOfMazes[name] = MyMaze;
-            return Ok(MyMaze);
+            string s = MyMaze.ToJSON();
+            return s;
         }
+
+        public string Get(int id)
+        {
+            return "value";
+        }
+
         /*[HttpPost]
         public void AddProduct(Product p)
         {
