@@ -7,6 +7,7 @@ using System.Web.Http;
 
 namespace Ex3A.Controllers
 {
+    /*
     public class SolveController : ApiController
     {
         private static List<Product> products = new List<Product> {
@@ -33,4 +34,5 @@ namespace Ex3A.Controllers
             products.Add(p);
         }
     }
+    */
 }

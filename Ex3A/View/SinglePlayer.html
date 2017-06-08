@@ -52,15 +52,17 @@
                     <div class="col-sm-10">
                         <button class="btn btn-default" id="btnStart">Start Game</button>
                         <script>
+                            var apiUrl = "api/Generates";
                             $("#btnStart").click(function () {
                             var name = $("#mazeName").val();
                             var cols = $("#mazeCols").val();
                             var rows = $("#mazeRows").val();
                             
-                            alert("hello, Ohad!")
+                            //alert("hello, Ohad!")
                             $.getJSON(apiUrl + "/" + name + "/" + cols + "/" + rows)
                             .done(function (product) {
-                            $("#generateMaze").text(product.Name + ": $" + product.Price);
+                                alert("hello, ido!")
+                                $("#generateMaze").text(product.Name + ": $" + product.Price);
                         })
                         .fail(function (jqXHR, textStatus, err) {
                             $("#product").text("Error: " + err);
