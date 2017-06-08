@@ -58,7 +58,7 @@
                             var cols = $("#mazeCols").val();
                             var rows = $("#mazeRows").val();
                             
-
+                            alert("hello, Ohad!")
                             $.getJSON(apiUrl + "/" + name + "/" + cols + "/" + rows)
                             .done(function (product) {
                             $("#generateMaze").text(product.Name + ": $" + product.Price);
