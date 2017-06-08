@@ -50,12 +50,14 @@
                 <div class="form-group">
                     <label for="mazeName" class="col-sm-2 control-label"></label>
                     <div class="col-sm-10">
-                        <button class="btn btn-default">Start Game</button>
+                        <button class="btn btn-default" id="btnStart">Start Game</button>
                         <script>
-                        $("#btnStart").click(function () {
-                            var name = $("#txtMazeName").val();
-                            var cols = $("#txtMazeCols").val();
-                            var rows = $("#txtMazeRows").val();
+                            $("#btnStart").click(function () {
+                                alert("ido");
+                            var name = $("#mazeName").val();
+                            var cols = $("#mazeCols").val();
+                            var rows = $("#mazeRows").val();
+                            
 
                             $.getJSON(apiUrl + "/" + name + "/" + cols + "/" + rows)
                             .done(function (product) {
