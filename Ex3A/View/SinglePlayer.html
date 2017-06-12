@@ -7,83 +7,58 @@
     <link href="../Scripts/bootstrap.css" rel="stylesheet" />
 </head>
 <body>
- 
-    <div id="navBar"></div>
 
-    <div class="container body-content">
-        <h2>Single Player Game</h2><hr />
-        <div class="col-sm-4 form-horizontal">
-            <div class="form-group"> 
-                <label for="mazeName" class="col-sm-2 control-label">Name</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="mazeName" />
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="mazeRows" class="col-sm-2 control-label">Rows</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="mazeRows" />
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="mazeCols" class="col-sm-2 control-label">Cols</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="mazeCols" />
-                </div>
-            </div>
-            <div class="form-group">
+    <div id="navBar"></div>
+    <div class="row">
+        <div class="container body-content">
+            <h2>Single Player Game</h2><hr />
+            <div class="col-sm-4 form-horizontal">
                 <div class="form-group">
-                    <label for="mazeName" class="col-sm-2 control-label"></label>
+                    <label for="mazeName" class="col-sm-2 control-label">Name:</label>
                     <div class="col-sm-10">
-                        <button class="btn btn-default" id="btnStart">Start Game</button>
-                       
-                       
+                        <input type="text" class="form-control" id="mazeName" />
                     </div>
                 </div>
-
-
                 <div class="form-group">
-                        <div id="tableDiv" class="dropdown" >
+                    <label for="mazeRows" class="col-sm-2 control-label">Rows:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="mazeRows" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="mazeCols" class="col-sm-2 control-label">Cols:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="mazeCols" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button class="btn btn-default" id="btnStart">Start Game</button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+
+                        <div id="tableDiv" class="dropdown">
                             <button id="tableButton" class="btn dropdown-toggle" type="button" data-toggle="dropdown">
-                                Table
+                                choose Solve Algorithm
                                 <span class="caret"></span>
                             </button>
                             <ul id="tableMenu" class="dropdown-menu">
-                                <li><a href="#">Att1</a></li>
-                                <li><a href="#">Att2</a></li>
-                                <li><a href="#">Att3</a></li>
+                                <li><a href="#">BFS</a></li>
+                                <li><a href="#">DFS</a></li>
                             </ul>
                         </div>
                     </div>
-                    <!--
-        <div class="form-group">
-            <label for="mazeAlgorithm" class="col-sm-2 control-label">Search Algo</label>
-            <div class="col-sm-10">
-
-                <div class="dropdown">
-                    <button class="btn dropdown-toggle" type="button"
-                             data-toggle="dropdown">
-                        Dfs
-                        <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Dfs</a></li>
-                        <li><a href="#">Bfs</a></li>
-                    </ul>
                 </div>
-
-            </div>
-        </div>
-               -->
-                    <div class="form-group">
-                        <label for="mazeName" class="col-sm-2 control-label"></label>
-                        <div class="col-sm-10">
-                            <button class="btn btn-default" id="btnSolve">Solve Game</button>
-                        </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button class="btn btn-default" id="btnSolve">Solve Game</button>
                     </div>
                 </div>
-            <div class="col-sm-8 text-right">
-                <canvas id="mazeCanvasName" width="300" height="300" style="border:2px black solid"></canvas>
+            </div>
+            <div class="col-sm-8 form-horizontal">
+                <canvas id="mazeCanvasName" width="800" height="800" style="border:2px black solid"></canvas>
                 <img src="User.png" id="user" style="display: none;" />
                 <img src="End.jpg" id="end" style="display: none;" />
             </div>

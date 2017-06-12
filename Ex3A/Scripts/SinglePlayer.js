@@ -55,7 +55,3 @@ $("#tableMenu a").click(function (e) {
     $("#tableButton").text(selText);
 });
 
-
-$('#demolist li').on('click', function () {
-    $('#datebox').val($(this).text());
-});
