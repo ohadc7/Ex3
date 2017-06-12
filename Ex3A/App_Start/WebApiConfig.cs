@@ -20,13 +20,6 @@ namespace Ex3A
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
-
-            config.Routes.MapHttpRoute(
-              name: "DefaultApi2",
-              //routeTemplate: "api/{controller}/{id}",
-              routeTemplate: "api/{controller}/{name}/{rows}/{cols}",
-              defaults: new { id = RouteParameter.Optional }
-          );
         }
     }
 }
