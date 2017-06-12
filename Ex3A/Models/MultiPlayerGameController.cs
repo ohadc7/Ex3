@@ -27,7 +27,7 @@ namespace Ex3A.Models
     /// Class MultiPlayerGameController.
     /// </summary>
     /// <seealso cref="Ex1.Controller.IController" />
-    internal class MultiPlayerGameController : IController
+    internal class MultiPlayerGameController
     {
         /// <summary>
         /// The commands

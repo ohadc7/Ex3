@@ -41,31 +41,47 @@
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <label for="mazeAlgorithm" class="col-sm-2 control-label">Search Algo</label>
-                    <div class="col-sm-10">
 
-                        <div class="dropdown">
-                            <button class="btn dropdown-toggle" type="button"
-                                    id="dropdownMenu1" data-toggle="dropdown">
-                                Dfs
+                <div class="form-group">
+                        <div id="tableDiv" class="dropdown" >
+                            <button id="tableButton" class="btn dropdown-toggle" type="button" data-toggle="dropdown">
+                                Table
                                 <span class="caret"></span>
                             </button>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Dfs</a></li>
-                                <li><a href="#">Bfs</a></li>
+                            <ul id="tableMenu" class="dropdown-menu">
+                                <li><a href="#">Att1</a></li>
+                                <li><a href="#">Att2</a></li>
+                                <li><a href="#">Att3</a></li>
                             </ul>
                         </div>
+                    </div>
+                    <!--
+        <div class="form-group">
+            <label for="mazeAlgorithm" class="col-sm-2 control-label">Search Algo</label>
+            <div class="col-sm-10">
 
-                    </div>
+                <div class="dropdown">
+                    <button class="btn dropdown-toggle" type="button"
+                             data-toggle="dropdown">
+                        Dfs
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Dfs</a></li>
+                        <li><a href="#">Bfs</a></li>
+                    </ul>
                 </div>
-                <div class="form-group">
-                    <label for="mazeName" class="col-sm-2 control-label"></label>
-                    <div class="col-sm-10">
-                        <button class="btn btn-default">Solve Game</button>
-                    </div>
-                </div>
+
             </div>
+        </div>
+               -->
+                    <div class="form-group">
+                        <label for="mazeName" class="col-sm-2 control-label"></label>
+                        <div class="col-sm-10">
+                            <button class="btn btn-default" id="btnSolve">Solve Game</button>
+                        </div>
+                    </div>
+                </div>
             <div class="col-sm-8 text-right">
                 <canvas id="mazeCanvasName" width="300" height="300" style="border:2px black solid"></canvas>
                 <img src="User.png" id="user" style="display: none;" />
@@ -76,7 +92,7 @@
     <script src="../Scripts/jquery-3.2.1.min.js"></script>
     <script src="../Scripts/bootstrap.js"></script>
     <script src="../Scripts/navBar.js"></script>
-    <script src="../Scripts/generateMaze.js"></script>
+    <script src="../Scripts/singlePlayer.js"></script>
     <script src="../Scripts/mazeBoard.js"> </script>
 
 </body>

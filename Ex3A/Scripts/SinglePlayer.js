@@ -1,5 +1,5 @@
 ﻿$("#btnStart").click(function () {
-    var apiUrl = "/Generate";
+    var apiUrl = "/SinglePlayer";
     name = $("#mazeName").val();
     cols = $("#mazeCols").val();
     rows = $("#mazeRows").val();
@@ -30,4 +30,32 @@
     .fail(function (jqXHR, textStatus, err) {
      $("#product").text("Error: " + err);
     });
+});
+
+$("#btnSolve").click(function () {
+    var apiUrl = "/SinglePlayer";
+    name = $("#mazeName").val();
+    algorithm = $("#mazeAlgorithm").val();
+
+    $.getJSON(apiUrl + "/" + name + "/" + algorithm)
+        .done(function (data) {
+
+            var obj = JSON.parse(data);
+           
+
+        })
+    .fail(function (jqXHR, textStatus, err) {
+        $("#product").text("Error: " + err);
+    });
+});
+
+$("#tableMenu a").click(function (e) {
+    e.preventDefault();
+    var selText = $(this).text();
+    $("#tableButton").text(selText);
+});
+
+
+$('#demolist li').on('click', function () {
+    $('#datebox').val($(this).text());
 });

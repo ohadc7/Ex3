@@ -109,7 +109,7 @@
     <Content Include="Global.asax" />
     <Content Include="Scripts\bootstrap.css" />
     <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\generateMaze.js" />
+    <Content Include="Scripts\singlePlayer.js" />
     <Content Include="Scripts\jquery-3.2.1.min.js" />
     <Content Include="Scripts\mazeBoard.js" />
     <Content Include="Scripts\mazeClass.js" />
@@ -126,8 +126,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\GenerateController.cs" />
-    <Compile Include="Controllers\SolveController.cs" />
+    <Compile Include="Controllers\SinglePlayerController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
