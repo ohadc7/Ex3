@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Ex3A.Models;
+using SearchAlgorithmsLib;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -7,32 +9,22 @@ using System.Web.Http;
 
 namespace Ex3A.Controllers
 {
-    /*
+    
     public class SolveController : ApiController
     {
-        private static List<Product> products = new List<Product> {
-            new Product { Id = 1, Name = "Tomato Soup", Category = "Groceries", Price = 1 },
-            new Product { Id = 2, Name = "Yo-yo", Category = "Toys", Price = 3.75M },
-            new Product { Id = 3, Name = "Hammer", Category = "Hardware", Price = 16.99M }
-        };
-        public IEnumerable<Product> GetAllProducts()
+        private static IModel model;
+        public SolveController()
         {
-            return products;
+            model = new Model();
         }
-        public IHttpActionResult GetProduct(int id)
+
+        [HttpGet]
+        [Route("Solve/{name}/{algorithm}")]
+        public string GetMazeSolution(string name, int algorithm)
         {
-            Product product = products.FirstOrDefault(p => p.Id == id);
-            if (product == null)
-            {
-                return NotFound();
-            }
-            return Ok(product);
-        }
-        [HttpPost]
-        public void AddProduct(Product p)
-        {
-            products.Add(p);
+           Solution solution = model.solve(name, algorithm);
+           return solution.ToString();
         }
     }
-    */
+    
 }

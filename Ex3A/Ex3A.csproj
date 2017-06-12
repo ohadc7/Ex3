@@ -50,6 +50,14 @@
     <Reference Include="CommunicationSettings">
       <HintPath>..\packages\CommunicationSettings.dll</HintPath>
     </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="MazeGeneratorLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\MazeGeneratorLib.dll</HintPath>
@@ -101,14 +109,15 @@
     <Content Include="Global.asax" />
     <Content Include="Scripts\bootstrap.css" />
     <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\generateMaze.js" />
     <Content Include="Scripts\jquery-3.2.1.min.js" />
-    <Content Include="Scripts\jQuery.mazeBoard.js" />
+    <Content Include="Scripts\mazeBoard.js" />
     <Content Include="Scripts\mazeClass.js" />
+    <Content Include="Scripts\navBar.js" />
     <Content Include="View\HomePage.html" />
-    <Content Include="View\HTMLPage3-debug.html" />
-    <Content Include="View\HTMLPage6-debug.html" />
     <Content Include="View\Login.html" />
     <Content Include="View\MultiPlayer.html" />
+    <Content Include="View\NavBar.html" />
     <Content Include="View\Rankings.html" />
     <Content Include="View\Register.html" />
     <Content Include="View\Settings.html" />
@@ -118,28 +127,21 @@
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\GenerateController.cs" />
-    <Compile Include="Controllers\GeneratorController.cs" />
     <Compile Include="Controllers\SolveController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\CloseCommand.cs" />
     <Compile Include="Models\CommandParser.cs" />
-    <Compile Include="Models\Controller.cs" />
-    <Compile Include="Models\GenerateMazeCommand.cs" />
+    <Compile Include="Models\Ex3AContext.cs" />
     <Compile Include="Models\ICommand.cs" />
-    <Compile Include="Models\IController.cs" />
     <Compile Include="Models\IModel.cs" />
-    <Compile Include="Models\JoinCommand.cs" />
-    <Compile Include="Models\ListCommand.cs" />
     <Compile Include="Models\Model.cs" />
     <Compile Include="Models\MultiPlayerDS.cs" />
     <Compile Include="Models\MultiPlayerGameController.cs" />
     <Compile Include="Models\PacketStream.cs" />
-    <Compile Include="Models\PlayCommand.cs" />
     <Compile Include="Models\SinglePlayerGame.cs" />
-    <Compile Include="Models\SolveCommand.cs" />
-    <Compile Include="Models\StartCommand.cs" />
+    <Compile Include="Models\Users.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

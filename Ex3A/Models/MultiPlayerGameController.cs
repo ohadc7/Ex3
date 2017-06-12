@@ -17,12 +17,11 @@ using System.IO;
 using System.Net.Sockets;
 using System.Threading;
 using CommunicationSettings;
-using Ex1.Controller;
-using Ex1.Controller.Commands;
 using MazeLib;
 using Newtonsoft.Json.Linq;
+using Ex3A.Controller;
 
-namespace Ex1.Model
+namespace Ex3A.Models
 {
     /// <summary>
     /// Class MultiPlayerGameController.
@@ -72,9 +71,9 @@ namespace Ex1.Model
             IamHostClient = amITheHostClient;
 
             //dictionary with the possible commands of multiplayer mode:
-            commands = new Dictionary<string, ICommand>();
+           /* commands = new Dictionary<string, ICommand>();
             commands.Add("play", new PlayCommand(multiPlayerDs, model));
-            commands.Add("close", new CloseCommand(multiPlayerDs, model));
+            commands.Add("close", new CloseCommand(multiPlayerDs, model));*/
         }
 
         /// <summary>

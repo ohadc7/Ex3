@@ -11,7 +11,7 @@
 // </copyright>
 // <summary></summary>
 // ***********************************************************************
-namespace Ex1.Model
+namespace Ex3A.Models
 { 
     /// <summary>
     /// Class PacketStream.

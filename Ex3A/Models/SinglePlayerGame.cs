@@ -14,7 +14,7 @@
 using System.IO;
 using System.Net.Sockets;
 
-namespace Ex1.Model
+namespace Ex3A.Models
 {
     /// <summary>
     /// Class SinglePlayerGame.

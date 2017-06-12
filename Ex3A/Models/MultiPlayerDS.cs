@@ -17,7 +17,7 @@ using MazeLib;
 
 //credit to the example from: https://msdn.microsoft.com/en-us/library/aa645739(v=vs.71).aspx
 
-namespace Ex1.Model
+namespace Ex3A.Models
 {
     // A delegate type for hooking up change notifications.
     /// <summary>

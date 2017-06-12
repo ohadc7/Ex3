@@ -13,7 +13,7 @@
 // ***********************************************************************
 using System.Linq;
 
-namespace Ex1.Controller
+namespace Ex3A.Models
 {
     /// <summary>
     /// Class CommandParser.

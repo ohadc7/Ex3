@@ -19,7 +19,7 @@ using MazeGeneratorLib;
 using MazeLib;
 using SearchAlgorithmsLib;
 
-namespace Ex1.Model
+namespace Ex3A.Models
 {
     /// <summary>
     /// Class Model.

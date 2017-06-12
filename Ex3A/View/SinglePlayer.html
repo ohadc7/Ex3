@@ -7,23 +7,8 @@
     <link href="../Scripts/bootstrap.css" rel="stylesheet" />
 </head>
 <body>
-    <script src="../Scripts/jquery-3.2.1.min.js"></script>
-    <script src="../Scripts/bootstrap.js"></script>
-    <nav class="navbar navbar-default" role="navigation">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="HomePage.html">Maze</a>
-        </div>
-        <div>
-            <ul class="nav navbar-nav">
-                <li><a href="SinglePlayer.html">Single Game</a></li>
-                <li><a href="MultiPlayer.html">MultiPlayer Game</a></li>
-                <li><a href="Settings.html">Settings</a></li>
-                <li><a href="Rankings.html">User Rankings</a></li>
-                <li><a href="Register.html">Register</a></li>
-                <li><a href="Login.html">Login</a></li>
-            </ul>
-        </div>
-    </nav>
+ 
+    <div id="navBar"></div>
 
     <div class="container body-content">
         <h2>Single Player Game</h2><hr />
@@ -78,64 +63,21 @@
                     <label for="mazeName" class="col-sm-2 control-label"></label>
                     <div class="col-sm-10">
                         <button class="btn btn-default">Solve Game</button>
-                        
-
                     </div>
                 </div>
-
             </div>
             <div class="col-sm-8 text-right">
                 <canvas id="mazeCanvasName" width="300" height="300" style="border:2px black solid"></canvas>
                 <img src="User.png" id="user" style="display: none;" />
                 <img src="End.jpg" id="end" style="display: none;" />
-
-
-                <script src="../Scripts/jQuery.mazeBoard.js"> </script>
-
-                <script>
-                            var apiUrl = "/Generate";
-                           
-                            $("#btnStart").click(function () {
-                             name = $("#mazeName").val();
-                             cols = $("#mazeCols").val();
-                             rows = $("#mazeRows").val();
-
-                            $.getJSON(apiUrl + "/" + name + "/" + rows + "/" + cols)
-                                .done(function (data) {
-                                   
-                                    var obj = JSON.parse(data);
-                                    mazeString = JSON.stringify(obj.Maze);
-                                    alert(mazeString);
-                                  
-                                        var i, j;
-                                        maze2dArray = [];
-                                        mazeArray = [];
-                                        for (i = 0; i < rows; i++) {
-                                            for (j = 0; j < cols; j++) {
-                                                mazeArray.push(mazeString.charAt(i*cols+j));
-
-                                            }
-                                            alert(mazeArray);
-                                            maze2dArray.push(mazeArray);
-                                            alert(maze2dArray);
-                                            mazeArray = [];
-                                        }
-                                        alert(maze2dArray);
-                                        $('#mazeCanvasName').mazeBoard('mazeBoard', maze2dArray, 0, 0, 2, 9, user, end);
-                                        $('#mazeCanvasName').mazeBoard('drawMaze');
-                              
-
-                        })
-                        .fail(function (jqXHR, textStatus, err) {
-                            $("#product").text("Error: " + err);
-                            });
-                        });
-                </script>
             </div>
         </div>
     </div>
-
-
+    <script src="../Scripts/jquery-3.2.1.min.js"></script>
+    <script src="../Scripts/bootstrap.js"></script>
+    <script src="../Scripts/navBar.js"></script>
+    <script src="../Scripts/generateMaze.js"></script>
+    <script src="../Scripts/mazeBoard.js"> </script>
 
 </body>
 </html>

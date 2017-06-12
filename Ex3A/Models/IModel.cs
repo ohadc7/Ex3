@@ -16,7 +16,7 @@ using System.Net.Sockets;
 using MazeLib;
 using SearchAlgorithmsLib;
 
-namespace Ex1.Model
+namespace Ex3A.Models
 { 
     /// <summary>
     /// Interface IModel

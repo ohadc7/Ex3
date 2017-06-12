@@ -12,9 +12,9 @@
 // <summary></summary>
 // ***********************************************************************
 using System.Net.Sockets;
-using Ex1.Model;
+using Ex3A.Models;
  
-namespace Ex1.Controller
+namespace Ex3A.Controller
 { 
     /// <summary>
     /// Interface ICommand
