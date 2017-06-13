@@ -28,6 +28,23 @@
             </div>
         </div>
      </div>
+
+
+    <div class="panel-body">
+        <ul class="list-unstyled" data-bind="foreach: books">
+            <li>
+
+
+                <span data-bind="text: Users.Name" style="fontweight:bold"></span>:
+                <span data-bind="text: Title"></span>
+                <a href="#" style="font-size:smaller">Details</a>
+            </li>
+        </ul>
+    </div>
+
+
+
+
         <script src="../Scripts/jquery-3.2.1.min.js"></script>
         <script src="../Scripts/bootstrap.js"></script>
         <script src="../Scripts/navBar.js"></script>

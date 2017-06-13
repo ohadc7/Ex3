@@ -1,7 +1,7 @@
 ﻿gameStarted = 0;
 $("#btnStart").click(function () {
     if (gameStarted) {
-        alert("the game has already started");
+       
     } else {
         gameStarted = 1;
         var apiUrl = "/SinglePlayer";
@@ -15,7 +15,6 @@ $("#btnStart").click(function () {
                 var obj = JSON.parse(data);
                 var initPosition = obj.Start;
                 var goalPosition = obj.End;
-                //mazeString = JSON.stringify(obj.Maze);
                 mazeString = obj.Maze;
                 var i, j;
                 maze2dArray = [];
@@ -32,6 +31,7 @@ $("#btnStart").click(function () {
                 $('#mazeCanvasName').mazeBoard('drawMaze');
 
 
+
             })
             .fail(function (jqXHR, textStatus, err) {
                 $("#product").text("Error: " + err);
@@ -42,8 +42,7 @@ $("#btnStart").click(function () {
 $("#btnSolve").click(function () {
     var apiUrl = "/SinglePlayer";
     name = $("#mazeName").val();
-    var selText = $(this).text();
-    algorithm = $("#mazeAlgorithm").text(selText);
+    algorithm = $("#mazeAlgorithm").text().trim();
     var algoNum=1;
     if (algorithm == "BFS") {
         algoNum = 0;
@@ -64,6 +63,6 @@ $("#btnSolve").click(function () {
 $("#tableMenu a").click(function (e) {
     e.preventDefault();
     var selText = $(this).text();
-    $("#mazeAlgorithm").text(selText);
+    $("#mazeAlgorithm").html(selText + ' ' + ' <span class="caret"></span>');
 });
 

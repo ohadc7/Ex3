@@ -43,16 +43,12 @@
 			context.drawImage(userImg, currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
 			context.drawImage(endImg, goalPosCol * cellWidth, goalPosRow * cellHeight, cellWidth, cellHeight);
 
-			/*window.onload = function() {
-				context.drawImage(userImg, currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
-        		context.drawImage(endImg, goalPosCol * cellWidth, goalPosRow * cellHeight, cellWidth, cellHeight);
-			}*/
-
+		
 			'use strict';
 			document.addEventListener('keydown', (event) => {
 				const keyName = event.key;
 				switch(keyName) {
-					case "ArrowDown":
+				    case "ArrowDown":
 						if (currPosRow + 1 < rows && maze[currPosRow + 1][currPosCol] != 1) {
 							context.clearRect(currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
 							currPosRow++;
