@@ -15,6 +15,8 @@ namespace Ex3A.Migrations
                         Name = c.String(),
                         Password = c.String(),
                         Email = c.String(),
+                        Wins = c.Int(nullable: false),
+                        Loses = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id);
             

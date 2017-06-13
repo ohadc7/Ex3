@@ -19,7 +19,6 @@ using System.Threading;
 using CommunicationSettings;
 using MazeLib;
 using Newtonsoft.Json.Linq;
-using Ex3A.Controller;
 
 namespace Ex3A.Models
 {
@@ -32,7 +31,7 @@ namespace Ex3A.Models
         /// <summary>
         /// The commands
         /// </summary>
-        private readonly Dictionary<string, ICommand> commands;
+        //private readonly Dictionary<string, ICommand> commands;
 
         /// <summary>
         /// The iam host client
@@ -86,13 +85,13 @@ namespace Ex3A.Models
             //stream = client.GetStream();
             //Writer = new BinaryWriter(stream);
             var parser = new CommandParser(commandLine);
-            if (!commands.ContainsKey(parser.CommandKey))
+           /* if (!commands.ContainsKey(parser.CommandKey))
                 Writer.Write("The command " + parser.CommandKey + " isn't known in a multiplayer game.");
             else
             {
                 var command = commands[parser.CommandKey];
                 command.Execute(parser.Args, client);
-            }
+            }*/
         }
 
         /// <summary>

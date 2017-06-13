@@ -13,7 +13,7 @@ namespace Ex3A.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201706131051195_Initial"; }
+            get { return "201706131942515_Initial"; }
         }
         
         string IMigrationMetadata.Source
