@@ -40,14 +40,14 @@ namespace Ex3A.Models
         /// <param name="rows">The rows.</param>
         /// <param name="cols">The cols.</param>
         /// <returns>Maze.</returns>
-        Maze generate(string name, int rows, int cols);
+        Maze Generate(string name, int rows, int cols);
         /// <summary>
         /// Solves the specified name.
         /// </summary>
         /// <param name="name">The name.</param>
         /// <param name="algorithmNumber">The algorithm number.</param>
         /// <returns>Solution.</returns>
-        Solution solve(string name, int algorithmNumber);
+        string Solve(string name, int algorithmNumber);
         /// <summary>
         /// Starts the specified name.
         /// </summary>
@@ -56,12 +56,12 @@ namespace Ex3A.Models
         /// <param name="cols">The cols.</param>
         /// <param name="client">The client.</param>
         /// <returns>MultiPlayerDS.</returns>
-        MultiPlayerDS start(string name, int rows, int cols, TcpClient client);
+        MultiPlayerDS Start(string name, int rows, int cols, TcpClient client);
         /// <summary>
         /// Lists this instance.
         /// </summary>
         /// <returns>List&lt;System.String&gt;.</returns>
-        List<string> list();
+        List<string> List();
         /// <summary>
         /// Gets the multi player data structure.
         /// </summary>

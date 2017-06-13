@@ -40,10 +40,13 @@
 			currPosRow = $(this).data("playerStartPos").row;
 			currPosCol = $(this).data("playerStartPos").col;
 			
-			window.onload = function() {
+			context.drawImage(userImg, currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
+			context.drawImage(endImg, goalPosCol * cellWidth, goalPosRow * cellHeight, cellWidth, cellHeight);
+
+			/*window.onload = function() {
 				context.drawImage(userImg, currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
         		context.drawImage(endImg, goalPosCol * cellWidth, goalPosRow * cellHeight, cellWidth, cellHeight);
-			}
+			}*/
 
 			'use strict';
 			document.addEventListener('keydown', (event) => {

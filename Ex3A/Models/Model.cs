@@ -18,6 +18,7 @@ using Adapter;
 using MazeGeneratorLib;
 using MazeLib;
 using SearchAlgorithmsLib;
+using System.Text;
 
 namespace Ex3A.Models
 {
@@ -37,7 +38,7 @@ namespace Ex3A.Models
         /// Gets the dictionary of mazes and solutions.
         /// </summary>
         /// <value>The dictionary of mazes and solutions.</value>
-        private Dictionary<SearchableMaze, Solution> DictionaryOfMazesAndSolutions { get; }
+        private Dictionary<SearchableMaze, string> DictionaryOfMazesAndSolutions { get; }
         /// <summary>
         /// Gets or sets the dictionary of multi player ds.
         /// </summary>
@@ -51,7 +52,7 @@ namespace Ex3A.Models
         public Model()
         {
             DictionaryOfMazes = new Dictionary<string, Maze>();
-            DictionaryOfMazesAndSolutions = new Dictionary<SearchableMaze, Solution>();
+            DictionaryOfMazesAndSolutions = new Dictionary<SearchableMaze, string>();
             DictionaryOfMultiPlayerDS = new Dictionary<string, MultiPlayerDS>();
         }
 
@@ -67,7 +68,7 @@ namespace Ex3A.Models
         /// <param name="rows">The rows.</param>
         /// <param name="cols">The cols.</param>
         /// <returns>Maze.</returns>
-        public Maze generate(string name, int rows, int cols)
+        public Maze Generate(string name, int rows, int cols)
         {
             var dfsMazeGenerator = new DFSMazeGenerator();
             var MyMaze = dfsMazeGenerator.Generate(rows, cols);
@@ -92,7 +93,7 @@ namespace Ex3A.Models
         /// return list of optianl multi player games
         /// </summary>
         /// <returns>List&lt;System.String&gt;.</returns>
-        public List<string> list()
+        public List<string> List()
         {
             var listOgGames = new List<string>();
             foreach (var mp in DictionaryOfMultiPlayerDS.Values)
@@ -107,7 +108,7 @@ namespace Ex3A.Models
         /// <param name="name">The name.</param>
         /// <param name="algorithmNumber">The algorithm number.</param>
         /// <returns>Solution.</returns>
-        public Solution solve(string name, int algorithmNumber)
+        public string Solve(string name, int algorithmNumber)
         {
             var maze = DictionaryOfMazes[name];
             var searchableMaze = new SearchableMaze(maze);
@@ -124,13 +125,43 @@ namespace Ex3A.Models
                     searchAlgorithm = new DepthFirstSearch<PointState>();
                     break;
             }
-
             solution = searchAlgorithm.search(searchableMaze);
             EvaluateNodes = searchAlgorithm.getNumberOfNodesEvaluated();
-            DictionaryOfMazesAndSolutions.Add(searchableMaze, solution);
-            return solution;
+            string solutionString = ConvertSolution(solution);
+            DictionaryOfMazesAndSolutions.Add(searchableMaze, solutionString);
+            return solutionString;
         }
           
+
+        private string ConvertSolution(Solution solution)
+        {
+            StringBuilder solutionStringBuilder = new StringBuilder("");
+            var state = solution.Path.First;
+            var point = state.Value as PointState;
+            LinkedListNode<State> nextState;
+            PointState nextPoint;
+            for (nextState = state.Next; nextState != null; nextState = state.Next)
+            {
+                nextPoint = nextState.Value as PointState;
+                if (nextPoint.CurrentPosition.Row == point.CurrentPosition.Row)
+                {
+                    if (nextPoint.CurrentPosition.Col < point.CurrentPosition.Col)
+                        solutionStringBuilder.Append("0");
+                    else
+                        solutionStringBuilder.Append("1");
+                }
+                else
+                {
+                    if (nextPoint.CurrentPosition.Row < point.CurrentPosition.Row)
+                        solutionStringBuilder.Append("2");
+                    else
+                        solutionStringBuilder.Append("3");
+                }
+                state = nextState;
+                point = nextPoint;
+            }
+            return solutionStringBuilder.ToString();
+        }
         /// <summary>
         /// Starts a new multi plyer game by set the info for it
         /// </summary>
@@ -139,7 +170,7 @@ namespace Ex3A.Models
         /// <param name="cols">The cols.</param>
         /// <param name="host">The host.</param>
         /// <returns>MultiPlayerDS.</returns>
-        public MultiPlayerDS start(string name, int rows, int cols, TcpClient host)
+        public MultiPlayerDS Start(string name, int rows, int cols, TcpClient host)
         {
             if (DictionaryOfMazes.ContainsKey(name))
             {
@@ -149,7 +180,7 @@ namespace Ex3A.Models
             }
             else
             {
-                var multiPlayerDs = new MultiPlayerDS(host, name, generate(name, rows, cols));
+                var multiPlayerDs = new MultiPlayerDS(host, name, Generate(name, rows, cols));
                 DictionaryOfMultiPlayerDS.Add(name, multiPlayerDs);
                 return multiPlayerDs;
             }

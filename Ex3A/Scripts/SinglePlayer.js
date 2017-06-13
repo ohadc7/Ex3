@@ -35,9 +35,14 @@
 $("#btnSolve").click(function () {
     var apiUrl = "/SinglePlayer";
     name = $("#mazeName").val();
-    algorithm = $("#mazeAlgorithm").val();
-
-    $.getJSON(apiUrl + "/" + name + "/" + algorithm)
+    var selText = $(this).text();
+    algorithm = $("#mazeAlgorithm").text(selText);
+    var algoNum=1;
+    if (algorithm == "BFS") {
+        algoNum = 0;
+    }
+    
+    $.getJSON(apiUrl + "/" + name + "/" + algoNum)
         .done(function (data) {
 
             var obj = JSON.parse(data);
@@ -52,6 +57,6 @@ $("#btnSolve").click(function () {
 $("#tableMenu a").click(function (e) {
     e.preventDefault();
     var selText = $(this).text();
-    $("#tableButton").text(selText);
+    $("#mazeAlgorithm").text(selText);
 });
 

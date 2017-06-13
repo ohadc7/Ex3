@@ -21,7 +21,7 @@ namespace Ex3A.Controllers
         [Route ("SinglePlayer/{name}/{rows}/{cols}")]
         public string GetGenerateMaze(string name, int rows, int cols)
         {
-            Maze maze= model.generate(name, rows, cols);
+            Maze maze= model.Generate(name, rows, cols);
             return (string)maze.ToJSON();
         }
 
@@ -29,8 +29,7 @@ namespace Ex3A.Controllers
         [Route("SinglePlayer/{name}/{algorithm}")]
         public string GetMazeSolution(string name, int algorithm)
         {
-            Solution solution = model.solve(name, algorithm);
-            return solution.ToString();
+            return model.Solve(name, algorithm);
         }
 
         // GET: api/Generator
