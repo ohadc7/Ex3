@@ -7,46 +7,40 @@
     <link href="../Scripts/bootstrap.css" rel="stylesheet" />
 </head>
 <body>
-    <div id="navBar"></div>
 
     <div id="navBar"></div>
     <div class="container body-content">
-        <h2>Register</h2><hr />
+        <h2>User Rankings</h2><hr />
         <div class="row">
             <div class="col-md-6">
                 <table class="table table-condensed">
                     <thead>
                         <tr>
-                            <th>#</th>
                             <th>Rank</th>
                             <th>Username</th>
                             <th>Wins</th>
                             <th>Loses</th>
                         </tr>
                     </thead>
+                    <tbody data-bind="foreach: users">
+                        <tr>
+                            <td><span>1</span></td>
+                            <td><span data-bind="text: Name"></span></td>
+                            <td><span data-bind="text: Wins"></span></td>
+                            <td><span data-bind="text: Wins"></span></td>
+                        </tr>
                 </table>
             </div>
         </div>
-     </div>
-
-
-    <div class="panel-body">
-        <ul class="list-unstyled" data-bind="foreach: users">
-            <li>
-
-
-                <span data-bind="text: Users.Name" style="fontweight:bold"></span>:
-                <span data-bind="text: Wins"></span>
-                <span data-bind="text: Loses"></span>
-            </li>
-        </ul>
     </div>
 
 
+    <script src="../Scripts/jquery-3.2.1.min.js"></script>
+    <script src="../Scripts/bootstrap.js"></script>
+    <script src="../Scripts/navBar.js"></script>
+    <script src="../Scripts/knockout-3.4.2.js"></script>
+    <script src="../Scripts/rankingsScript.js"></script>
 
 
-        <script src="../Scripts/jquery-3.2.1.min.js"></script>
-        <script src="../Scripts/bootstrap.js"></script>
-        <script src="../Scripts/navBar.js"></script>
 </body>
 </html>

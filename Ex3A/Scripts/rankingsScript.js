@@ -2,7 +2,7 @@
     var self = this; // make 'this' available to subfunctions or closures
     self.users = ko.observableArray(); // enables data binding
     var usersUri = "/api/Users";
-    function getAllBooks() {
+    function getAllUsers() {
         $.getJSON(usersUri).done(function (data) {
             self.users(data);
         });
