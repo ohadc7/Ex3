@@ -111,6 +111,7 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\knockout-3.4.2.debug.js" />
     <Content Include="Scripts\knockout-3.4.2.js" />
+    <Content Include="Scripts\loginScript.js" />
     <Content Include="Scripts\rankingsScript.js" />
     <Content Include="Scripts\registerScript.js" />
     <Content Include="Scripts\singlePlayer.js" />
