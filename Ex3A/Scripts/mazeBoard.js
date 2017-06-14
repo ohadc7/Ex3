@@ -18,15 +18,15 @@
 
         drawMaze : function( ) {
 			var thisCanvas = $(this)[0];
-			var userImg = $(this).data("playerImage");
-			var endImg = $(this).data("exitImage");
+			 userImg = $(this).data("playerImage");
+			 endImg = $(this).data("exitImage");
 			var maze = $(this).data("mazeData");
 			var myCanvas = $(this);
-			var context = thisCanvas.getContext("2d");
+			context = thisCanvas.getContext("2d");
 			var rows = maze.length;
 			var cols = maze[0].length;
-			var cellWidth = thisCanvas.width / cols;
-			var cellHeight = thisCanvas.height / rows;
+		     cellWidth = thisCanvas.width / cols;
+			 cellHeight = thisCanvas.height / rows;
 			
 			for (var i = 0; i < rows; i++) {
 				for (var j = 0; j < cols; j++) {
@@ -81,8 +81,7 @@
 				}
 			}, false);
 
-		},
-
+        },
         hide : function( ) {  },
 
         update : function( content ) {  }
@@ -103,6 +102,61 @@
 })( jQuery );
 
 
+function solve(solutionObj) {
+    var index = solutionObj.i;
+    index++;
+    len = solutionObj.solutionString.length;
+    if (index >= len) {
+        clearInterval(solutionObj.interval);
+        return;
+    }
+    for (var i = 0; i < len; i++)
+    {
+        switch (solutionObj.solutionString[i])
+        {
+            case '0':
+                {
+                    currPosCol -= 1;
+                    context.clearRect(currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
+                    currPosCol++;
+                    context.drawImage(userImg, currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
+                    index++;
+                    break;
+                }
+            case '1':
+                {
+                    currPosCol += 1;
+                    context.clearRect(currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
+                    currPosCol++;
+                    context.drawImage(userImg, currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
+                    index++;
+                    break;
+                }
+            case '2':
+                {
+                    currPosRow -= 1;
+                    context.clearRect(currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
+                    currPosCol++;
+                    context.drawImage(userImg, currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
+                    index++;
+                    break;
+                }
+            case '3':
+                {
+                    currPosRow += 1;
+                    context.clearRect(currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
+                    currPosCol++;
+                    context.drawImage(userImg, currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
+                    index++;
+                    break;
+                }
+            default:
+                break;
+        }
+    }
+
+
+};
 /*
 // JavaScript source code
 (function ($) {
