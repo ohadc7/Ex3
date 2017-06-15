@@ -1,6 +1,24 @@
 ﻿window.onload = function () {
     document.getElementById("rePassword").onchange = checkPassword;
+    document.getElementById("userName").onchange = checkName;
+
 }
+
+$("#userName").onchange(function () {
+    var userName = document.getElementById("userName").value;
+    var usersExistsUri = '/Users/';
+    $.getJSON(usersExistsUri + userName).done(function (data) {
+        if (data == "exist") {
+            new PNotify({
+                title: 'UserName Error!',
+                text: 'This Username is already taken, please choose another!',
+            });
+            return 0;
+        } else {
+            return 1;
+        }
+    });
+});
 
 function checkPassword() {
     var password = document.getElementById("password").value;
@@ -12,6 +30,22 @@ function checkPassword() {
         });
     }
 }
+function checkName() {
+    var userName = document.getElementById("userName").value;
+    var usersExistsUri = '/Users/';
+    $.getJSON(usersExistsUri + userName).done(function (data) {
+        if (data == "exist") {
+            new PNotify({
+                title: 'UserName Error!',
+                text: 'This Username is already taken, please choose another!',
+            });
+            return 0;
+        } else {
+            return 1;
+        }
+    });
+}
+
 
 var ViewModel = function () {
     var self = this; // make 'this' available to subfunctions or closures
@@ -27,14 +61,24 @@ var ViewModel = function () {
             Password: encryptPassword,
             Email: self.Email()
         };
+        while (!checkName()) {
 
-        $.getJSON(usersUri).done(function (data) {
-            console.log(data);
+        }
+        var usersExistsUri = '/Users/';
+        $.getJSON(usersExistsUri + self.Username()).done(function (data) {
+            var returnString = JSON.parse(data);
+            if (returnString == "exist") {
+
+            }
         });
 
         $.post(usersUri, user).done(function (item) {
             self.users.push(item);
+            sessionStorage.setItem("userName", user.Name);
+            window.location.replace("HomePage.html");
         });
+
+       
     }
 };
 ko.applyBindings(new ViewModel());

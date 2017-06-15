@@ -34,6 +34,21 @@ namespace Ex3A.Controllers
 
             return Ok(user);
         }
+        
+
+        [HttpGet]
+        [Route("Users/{name}")]
+        public string GetExistsUser(string name)
+        {
+             if(db.Users.Count(e => e.Name == name) > 0)
+              {
+                  return "exist";
+              }
+              else
+              {
+                  return "notExists";
+              }
+        }
 
         // PUT: api/Users/5
         [ResponseType(typeof(void))]
