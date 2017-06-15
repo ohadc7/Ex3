@@ -51,6 +51,17 @@ namespace Ex3A.Controllers
         }
 
         [HttpGet]
+        [Route("Users/{name}/{password}/{dummy}")]
+        public string GetCorrectUserAndPassword(string name, string password)
+        {
+            if (db.Users.Count(e => e.Name == name && e.Password == password) > 0)
+            {
+                return "exist";
+            }
+                return "notExists";
+        }
+
+        [HttpGet]
         [Route("Users/{name}/{dummy}")]
         public User GetUserByName(string name)
         {

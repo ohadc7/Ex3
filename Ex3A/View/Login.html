@@ -10,28 +10,28 @@
     <div id="navBar"></div>
     <div class="container body-content">
         <h2>Login</h2><hr />
-        <div class="col-sm-8 form-horizontal">
+        <form class="col-sm-8 form-horizontal" data-bind="submit: login">
             <div class="form-group">
-                <label for="mazeCols" class="col-sm-2 control-label">User Name:</label>
+                <label for="mazeCols" class="col-sm-2 control-label" >User Name:</label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" id="userName" />
+                    <input type="text" class="form-control" id="userName" data-bind="value: Username"/>
                 </div>
             </div>
             <div class="form-group">
                 <label for="mazeCols" class="col-sm-2 control-label">Password:</label>
                 <div class="col-sm-6">
-                    <input type="password" class="form-control" id="password" />
+                    <input type="password" class="form-control" id="password" data-bind="value: Password"/>
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                    <button class="btn btn-default">Login</button>
+                    <button class="btn btn-default" type="submit">Login</button>
                 </div>
             </div>
             <div class="form-group">
                 <a href="Register.html">Register as a new user</a>
             </div>
-        </div>
+        </form>
     </div>
     <script src="../Scripts/jquery-3.2.1.min.js"></script>
     <script src="../Scripts/bootstrap.js"></script>
