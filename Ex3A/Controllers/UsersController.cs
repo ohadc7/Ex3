@@ -50,6 +50,14 @@ namespace Ex3A.Controllers
               }
         }
 
+        [HttpGet]
+        [Route("Users/{name}/{dummy}")]
+        public User GetUserByName(string name)
+        {
+            return db.Users.Where(e => e.Name == name).FirstOrDefault();
+        }
+
+
         // PUT: api/Users/5
         [ResponseType(typeof(void))]
         public IHttpActionResult PutUser(int id, User user)

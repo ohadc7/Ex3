@@ -44,9 +44,8 @@ $("#btnSolve").click(function () {
         .done(function (data) {
 
             var solveString = data;
+            $('#mazeCanvasName').mazeBoard('solveMaze',solveString);
            
-            var solveObj = { solutionString: data, i: 0, interval: null };
-            solveObj.interval = setInterval(solve, 1000, solveObj);
         })
     .fail(function (jqXHR, textStatus, err) {
         $("#product").text("Error: " + err);

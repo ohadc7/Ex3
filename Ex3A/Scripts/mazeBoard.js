@@ -82,6 +82,10 @@
 			}, false);
 
         },
+        solveMaze: function(data){
+            var solveObj = { solutionString: data, interval: null };
+            solveObj.interval = setInterval(function () { solve(solveObj) }, 1000);
+        },
         hide : function( ) {  },
 
         update : function( content ) {  }
@@ -102,17 +106,18 @@
 })( jQuery );
 
 
+ 
+
+var index = 0;
 function solve(solutionObj) {
-    var index = solutionObj.i;
-    index++;
+    //index++;
     len = solutionObj.solutionString.length;
     if (index >= len) {
         clearInterval(solutionObj.interval);
         return;
     }
-    for (var i = 0; i < len; i++)
-    {
-        switch (solutionObj.solutionString[i])
+    
+        switch (solutionObj.solutionString[index])
         {
             case '0':
                 {
@@ -120,7 +125,6 @@ function solve(solutionObj) {
                     context.clearRect(currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
                     currPosCol++;
                     context.drawImage(userImg, currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
-                    index++;
                     break;
                 }
             case '1':
@@ -129,7 +133,6 @@ function solve(solutionObj) {
                     context.clearRect(currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
                     currPosCol++;
                     context.drawImage(userImg, currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
-                    index++;
                     break;
                 }
             case '2':
@@ -138,7 +141,6 @@ function solve(solutionObj) {
                     context.clearRect(currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
                     currPosCol++;
                     context.drawImage(userImg, currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
-                    index++;
                     break;
                 }
             case '3':
@@ -147,15 +149,14 @@ function solve(solutionObj) {
                     context.clearRect(currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
                     currPosCol++;
                     context.drawImage(userImg, currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
-                    index++;
                     break;
                 }
             default:
                 break;
-        }
     }
-
-
+        if (index < len) {
+            index++;
+        }
 };
 /*
 // JavaScript source code
