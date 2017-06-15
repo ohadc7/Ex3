@@ -22,7 +22,7 @@
                 maze2dArray.push(mazeArray);
                 mazeArray = [];
             }
-            $('#mazeCanvasName').mazeBoard('mazeBoard', maze2dArray, initPosition.Row, initPosition.Col, goalPosition.Row, goalPosition.Col, user, end);
+            $('#mazeCanvasName').mazeBoard('mazeBoard', maze2dArray, initPosition.Row, initPosition.Col, goalPosition.Row, goalPosition.Col, user, end, true);
             $('#mazeCanvasName').mazeBoard('drawMaze');
         })
         .fail(function (jqXHR, textStatus, err) {
