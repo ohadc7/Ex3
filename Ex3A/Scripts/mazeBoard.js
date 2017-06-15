@@ -121,15 +121,15 @@ function solve(solutionObj) {
         {
             case '0':
                 {
-                    currPosCol -= 1;
+                    //currPosCol -= 1;
                     context.clearRect(currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
-                    currPosCol++;
+                    currPosCol--;
                     context.drawImage(userImg, currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
                     break;
                 }
             case '1':
                 {
-                    currPosCol += 1;
+                    //currPosCol += 1;
                     context.clearRect(currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
                     currPosCol++;
                     context.drawImage(userImg, currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
@@ -137,17 +137,17 @@ function solve(solutionObj) {
                 }
             case '2':
                 {
-                    currPosRow -= 1;
+                    //currPosRow -= 1;
                     context.clearRect(currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
-                    currPosCol++;
+                    currPosRow--;
                     context.drawImage(userImg, currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
                     break;
                 }
             case '3':
                 {
-                    currPosRow += 1;
+                    //currPosRow += 1;
                     context.clearRect(currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
-                    currPosCol++;
+                    currPosRow++;
                     context.drawImage(userImg, currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
                     break;
                 }
