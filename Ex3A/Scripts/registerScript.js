@@ -4,22 +4,6 @@
 
 }
 
-$("#userName").onchange(function () {
-    var userName = document.getElementById("userName").value;
-    var usersExistsUri = '/Users/';
-    $.getJSON(usersExistsUri + userName).done(function (data) {
-        if (data == "exist") {
-            new PNotify({
-                title: 'UserName Error!',
-                text: 'This Username is already taken, please choose another!',
-            });
-            return 0;
-        } else {
-            return 1;
-        }
-    });
-});
-
 function checkPassword() {
     var password = document.getElementById("password").value;
     var rePassword = document.getElementById("rePassword").value;
@@ -61,9 +45,6 @@ var ViewModel = function () {
             Password: encryptPassword,
             Email: self.Email()
         };
-        while (!checkName()) {
-
-        }
         var usersExistsUri = '/Users/';
         $.getJSON(usersExistsUri + self.Username()).done(function (data) {
             var returnString = JSON.parse(data);

@@ -17,32 +17,32 @@
             $(this).data("isEnabled", isEnabled);
         },
 
-        drawMaze: function () {
-            var thisCanvas = $(this)[0];
-            userImg = $(this).data("playerImage");
-            endImg = $(this).data("exitImage");
-            var maze = $(this).data("mazeData");
-            var myCanvas = $(this);
-            context = thisCanvas.getContext("2d");
-            var rows = maze.length;
-            var cols = maze[0].length;
-            cellWidth = thisCanvas.width / cols;
-            cellHeight = thisCanvas.height / rows;
-
-            for (var i = 0; i < rows; i++) {
-                for (var j = 0; j < cols; j++) {
-                    if (maze[i][j] == 1) {
-                        context.fillRect(cellWidth * j, cellHeight * i, cellWidth, cellHeight);
-                    }
-                }
-            }
-            goalPosRow = $(this).data("exitPos").row;
-            goalPosCol = $(this).data("exitPos").col;
-            currPosRow = $(this).data("playerStartPos").row;
-            currPosCol = $(this).data("playerStartPos").col;
-
-            context.drawImage(userImg, currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
-            context.drawImage(endImg, goalPosCol * cellWidth, goalPosRow * cellHeight, cellWidth, cellHeight);
+        drawMaze : function( ) {
+			 thisCanvas = $(this)[0];
+			 userImg = $(this).data("playerImage");
+			 endImg = $(this).data("exitImage");
+			var maze = $(this).data("mazeData");
+			var myCanvas = $(this);
+			context = thisCanvas.getContext("2d");
+			var rows = maze.length;
+			var cols = maze[0].length;
+		     cellWidth = thisCanvas.width / cols;
+			 cellHeight = thisCanvas.height / rows;
+			
+			for (var i = 0; i < rows; i++) {
+				for (var j = 0; j < cols; j++) {
+					if (maze[i][j] == 1) {
+						context.fillRect(cellWidth * j, cellHeight * i, cellWidth, cellHeight);
+					}
+				}
+			}
+			goalPosRow = $(this).data("exitPos").row;
+			goalPosCol = $(this).data("exitPos").col;
+			currPosRow = $(this).data("playerStartPos").row;
+			currPosCol = $(this).data("playerStartPos").col;
+			
+			context.drawImage(userImg, currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
+			context.drawImage(endImg, goalPosCol * cellWidth, goalPosRow * cellHeight, cellWidth, cellHeight);
 
             if ($(this).data("isEnabled")) {
                 'use strict';
@@ -86,6 +86,11 @@
         solveMaze: function(data){
             var solveObj = { solutionString: data, interval: null };
             solveObj.interval = setInterval(function () { solve(solveObj) }, 1000);
+        },
+        clearCanvas: function () {
+            thisCanvas = $(this)[0];
+            context = thisCanvas.getContext("2d");
+            context.clearRect(0, 0, thisCanvas.width, thisCanvas.height);
         },
         hide : function( ) {  },
 
