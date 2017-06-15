@@ -6,7 +6,6 @@
 
     $.getJSON(apiUrl + "/" + name + "/" + rows + "/" + cols)
         .done(function (data) {
-
             var obj = JSON.parse(data);
             var initPosition = obj.Start;
             var goalPosition = obj.End;
@@ -23,7 +22,9 @@
                 mazeArray = [];
             }
             $('#mazeCanvasName').mazeBoard('mazeBoard', maze2dArray, initPosition.Row, initPosition.Col, goalPosition.Row, goalPosition.Col, user, end);
+            $('#mazeCanvasName').mazeBoard('clearCanvas');
             $('#mazeCanvasName').mazeBoard('drawMaze');
+            $('#mazeCanvasName').show();
         })
         .fail(function (jqXHR, textStatus, err) {
             $("#product").text("Error: " + err);

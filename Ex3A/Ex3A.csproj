@@ -112,6 +112,7 @@
     <Content Include="Global.asax" />
     <Content Include="Scripts\bootstrap.css" />
     <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\checkSessionScript.js" />
     <Content Include="Scripts\knockout-3.4.2.debug.js" />
     <Content Include="Scripts\knockout-3.4.2.js" />
     <Content Include="Scripts\loginScript.js" />

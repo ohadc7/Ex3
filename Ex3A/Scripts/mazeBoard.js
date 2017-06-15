@@ -17,7 +17,7 @@
         },
 
         drawMaze : function( ) {
-			var thisCanvas = $(this)[0];
+			 thisCanvas = $(this)[0];
 			 userImg = $(this).data("playerImage");
 			 endImg = $(this).data("exitImage");
 			var maze = $(this).data("mazeData");
@@ -85,6 +85,11 @@
         solveMaze: function(data){
             var solveObj = { solutionString: data, interval: null };
             solveObj.interval = setInterval(function () { solve(solveObj) }, 1000);
+        },
+        clearCanvas: function () {
+            thisCanvas = $(this)[0];
+            context = thisCanvas.getContext("2d");
+            context.clearRect(0, 0, thisCanvas.width, thisCanvas.height);
         },
         hide : function( ) {  },
 
