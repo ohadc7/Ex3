@@ -1,4 +1,5 @@
 ﻿$("#btnStart").click(function () {
+    $(".loader").show();
     var apiUrl = "/SinglePlayer";
     name = $("#mazeName").val();
     cols = $("#mazeCols").val();
@@ -24,6 +25,7 @@
             $('#mazeCanvasName').mazeBoard('mazeBoard', maze2dArray, initPosition.Row, initPosition.Col, goalPosition.Row, goalPosition.Col, user, end, true);
             $('#mazeCanvasName').mazeBoard('clearCanvas');
             $('#mazeCanvasName').mazeBoard('drawMaze');
+            $(".loader").hide();
             $('#mazeCanvasName').show();
         })
         .fail(function (jqXHR, textStatus, err) {

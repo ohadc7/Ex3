@@ -115,7 +115,6 @@
     <Content Include="Scripts\checkSessionScript.js" />
     <Content Include="Scripts\knockout-3.4.2.debug.js" />
     <Content Include="Scripts\knockout-3.4.2.js" />
-    <Content Include="Scripts\loaderAnimationScript.js" />
     <Content Include="Scripts\loginScript.js" />
     <Content Include="Scripts\multiPlayerScript.js" />
     <Content Include="Styles\loader.css" />

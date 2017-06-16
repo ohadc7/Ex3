@@ -5,6 +5,7 @@
     <meta charset="utf-8" />
     <title>User Rankings</title>
     <link href="../Styles/bootstrap.css" rel="stylesheet" />
+    <link href="../Styles/loader.css" rel="stylesheet" />
 </head>
 <body>
 
@@ -29,7 +30,9 @@
                             <td><span data-bind="text: Wins"></span></td>
                             <td><span data-bind="text: Loses"></span></td>
                         </tr>
+                    </tbody>
                 </table>
+                <div class="loader" style="display: none;"></div>
             </div>
         </div>
     </div>
@@ -39,7 +42,6 @@
     <script src="../Scripts/bootstrap.js"></script>
     <script src="../Scripts/navBar.js"></script>
     <script src="../Scripts/knockout-3.4.2.js"></script>
-
     <script src="../Scripts/rankingsScript.js"></script>
 
 
