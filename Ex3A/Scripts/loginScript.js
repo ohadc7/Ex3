@@ -5,24 +5,34 @@
     self.Password = ko.observable();
     self.login = function () {
         var usersUri = '/api/Users/';
-        var encryptPassword = b64_sha512(self.Password());
-        var user = {
-            Name: self.Username(),
-            Password: encryptPassword,
-        };
+        var shaObj = new jsSHA("SHA-256", "TEXT");
+        shaObj.update(self.Password());
+        var hash = shaObj.getHash("HEX");
+        var userName = self.Username();
         var usersExistsUri = '/Users/';
-        $.getJSON(usersExistsUri + self.Username()).done(function (data) {
-            var returnString = JSON.parse(data);
-            if (returnString == "exist") {
-
+        $.getJSON(usersExistsUri + userName).done(function (data) {
+            if (data == "exist") {
+                var usersCheckCorrectUserAndPassword = '/Users/';
+                $.getJSON(usersCheckCorrectUserAndPassword + userName + "/" + hash + "/" + "1").done(function (data) {
+                    if (data == "OK") {
+                        sessionStorage.setItem("userName", userName);
+                        window.location.replace("HomePage.html");
+                    } else {
+                        new PNotify({
+                            title: 'Password Error!',
+                            text: 'Your password is incroect, please try again.',
+                        });
+                    }
+                });
+            } else {
+                new PNotify({
+                    title: 'UserName Error!',
+                    text: 'This Username is not part of our DataBase!',
+                });
             }
         });
 
-        $.post(usersUri, user).done(function (item) {
-            self.users.push(item);
-            sessionStorage.setItem("userName", user.Name);
-            window.location.replace("HomePage.html");
-        });
+       
 
 
     }
