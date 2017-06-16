@@ -31,10 +31,6 @@
                 });
             }
         });
-
-       
-
-
     }
 };
 ko.applyBindings(new ViewModel());
