@@ -110,14 +110,15 @@
     <Content Include="Content\jquery.pnotify.css" />
     <Content Include="Content\jquery.pnotify.icons.css" />
     <Content Include="Global.asax" />
-    <Content Include="Scripts\bootstrap.css" />
+    <Content Include="Styles\bootstrap.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\checkSessionScript.js" />
     <Content Include="Scripts\knockout-3.4.2.debug.js" />
     <Content Include="Scripts\knockout-3.4.2.js" />
     <Content Include="Scripts\loginScript.js" />
     <Content Include="Scripts\multiPlayerScript.js" />
-    <Content Include="Scripts\pnotify.custom.min.css" />
+    <Content Include="Styles\loader.css" />
+    <Content Include="Styles\pnotify.custom.min.css" />
     <Content Include="Scripts\pnotify.custom.min.js" />
     <Content Include="Scripts\rankingsScript.js" />
     <Content Include="Scripts\registerScript.js" />

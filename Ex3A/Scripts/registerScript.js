@@ -38,8 +38,8 @@ var ViewModel = function () {
     self.Password = ko.observable();
     self.Email = ko.observable();
     self.addUser = function () {
+        $(".loader").show();
         var usersUri = '/api/Users/';
-
         var shaObj = new jsSHA("SHA-256", "TEXT");
         shaObj.update(self.Password());
         var hash = shaObj.getHash("HEX");
@@ -50,6 +50,7 @@ var ViewModel = function () {
         };
         var usersExistsUri = '/Users/';
         $.getJSON(usersExistsUri + self.Username()).done(function (data) {
+            $(".loader").hide();
             if (data == "exist") {
 
             }

@@ -3,7 +3,9 @@
     self.users = ko.observableArray(); // enables data binding
     var usersUri = "/api/Users";
     function getAllUsers() {
+        $(".loader").show();
         $.getJSON(usersUri).done(function (data) {
+            $(".loader").hide();
             self.users(data);
         });
     }
