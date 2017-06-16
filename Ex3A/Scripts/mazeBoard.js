@@ -85,14 +85,6 @@
         },
         solveMaze: function(data){
             var solveObj = { solutionString: data, interval: null };
-
-            initPos = $(this).data("playerStartPos");
-            alert(initPos.row);
-            context.clearRect(currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
-            currPosRow = initPos.row;
-            currPosCol = initPos.col;
-            context.drawImage(userImg, currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
-
             solveObj.interval = setInterval(function () { solve(solveObj) }, 1000);
         },
         clearCanvas: function () {
@@ -125,7 +117,6 @@
 var index = 0;
 function solve(solutionObj) {
     //index++;
-
     len = solutionObj.solutionString.length;
     if (index >= len) {
         clearInterval(solutionObj.interval);
