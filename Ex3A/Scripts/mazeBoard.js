@@ -4,6 +4,8 @@
 * and to https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent
 */
 
+keyboardFunctionIsOn = false;
+
 (function( $ ){
 
     var methods = {
@@ -44,9 +46,9 @@
 			context.drawImage(userImg, currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
 			context.drawImage(endImg, goalPosCol * cellWidth, goalPosRow * cellHeight, cellWidth, cellHeight);
 
-            if ($(this).data("isEnabled")) {
-                'use strict';
-                document.addEventListener('keydown', (event) => {
+            callMeWhenKeyboardIsPressed =
+                function () {
+                    //(event) => {
                     const keyName = event.key;
                     switch (keyName) {
                         case "ArrowDown":
@@ -80,7 +82,15 @@
                         default:
                             return; // Quit when this doesn't handle the key event.
                     }
-                }, false);
+                };
+
+
+
+            if ($(this).data("isEnabled")) {
+                'use strict';
+
+                keyboardFunctionIsOn = true;
+                document.addEventListener('keydown', callMeWhenKeyboardIsPressed, false);
             }
         },
         solveMaze: function(data){
@@ -95,7 +105,11 @@
             thisCanvas = $(this)[0];
             context = thisCanvas.getContext("2d");
             context.clearRect(0, 0, thisCanvas.width, thisCanvas.height);
+            if (keyboardFunctionIsOn) {
+                document.removeEventListener('keydown', callMeWhenKeyboardIsPressed);
+            }
         },
+
         hide : function( ) {  },
 
         update : function( content ) {  }
@@ -168,75 +182,3 @@ function solve(solutionObj) {
             index++;
         }
 };
-/*
-// JavaScript source code
-(function ($) {
-	$.fn.mazeBoard = function (
-	//canvas, 
-	maze, rows, cols, initialPos, goalPos) {
-
-		//_canvas = document.getElementById(canvas);
-		_canvas = $(this);
-		_maze = maze;
-		_rows = rows;
-		_cols = cols;
-		_initialPos = initialPos;
-		_goalPos = goalPos;
-		_currPos = initialPos;
-
-
-		//drawMaze = function () {
-
-			var userImg = document.getElementById("user");
-			var endImg = document.getElementById("end");
-			var maze = this._maze;
-			var myCanvas = _canvas;
-			
-			//var currWidth = $(this).width();
-			
-			var context = this.getContext("2d");
-			var rows = maze.length;
-			var cols = maze[0].length;
-			var cellWidth = this._canvas.width / cols;
-			var cellHeight = this._canvas.height / rows;
-
-			for (var i = 0; i < rows; i++) {
-				for (var j = 0; j < cols; j++) {
-					if (maze[i][j] == 1) {
-						context.fillRect(cellWidth * j, cellHeight * i, cellWidth, cellHeight);
-					}
-				}
-			}
-			const goalPosRow = this._goalPos.row;
-			const goalPosCol = this._goalPos.col;
-			const currPosRow = this._currPos.row;
-			const currPosCol = this._currPos.col;
-			window.onload = function() {
-				context.drawImage(userImg, currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
-        		context.drawImage(endImg, goalPosCol * cellWidth, goalPosRow * cellHeight, cellWidth, cellHeight);
-			}
-		
-		//};
-
-		// Implement your plugin here
-		//var x = 0;
-		//alert(x);
-
-		return this;
-	};
-})(jQuery);
-
-
-class Position {
-	constructor(row, col) {
-		this._row = row;
-		this._col = col;
-	}
-	get row() {
-		return this._row;
-	}
-	get col() {
-		return this._col;
-	}
-}
-*/
