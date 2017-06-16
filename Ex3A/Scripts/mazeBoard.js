@@ -9,8 +9,13 @@ keyboardFunctionIsOn = false;
 (function( $ ){
 
     var methods = {
-        mazeBoard : function(mazeData, startRow, startCol, exitRow, exitCol, playerImage, exitImage, isEnabled //rows, cols, initialPos, goalPos
-																									) {
+        mazeBoard: function (mazeData, startRow, startCol, exitRow, exitCol, playerImage, exitImage, isEnabled, 
+            callbackFunctionForMove//function(direction, playerRow, playerCol)
+        ) {
+
+            callbackFunctionForMove("here the function callbackFunctionForMove can be executed, but it has to be called when the keyboard is pressed");
+
+
 			$(this).data("mazeData", mazeData);
 			$(this).data("playerStartPos", {row: startRow, col: startCol});
 			$(this).data("exitPos", {row: exitRow, col: exitCol});
@@ -88,7 +93,6 @@ keyboardFunctionIsOn = false;
 
             if ($(this).data("isEnabled")) {
                 'use strict';
-
                 keyboardFunctionIsOn = true;
                 document.addEventListener('keydown', callMeWhenKeyboardIsPressed, false);
             }
@@ -145,7 +149,6 @@ function solve(solutionObj) {
         {
             case '0':
                 {
-                    //currPosCol -= 1;
                     context.clearRect(currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
                     currPosCol--;
                     context.drawImage(userImg, currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
@@ -153,7 +156,6 @@ function solve(solutionObj) {
                 }
             case '1':
                 {
-                    //currPosCol += 1;
                     context.clearRect(currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
                     currPosCol++;
                     context.drawImage(userImg, currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
@@ -161,7 +163,6 @@ function solve(solutionObj) {
                 }
             case '2':
                 {
-                    //currPosRow -= 1;
                     context.clearRect(currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
                     currPosRow--;
                     context.drawImage(userImg, currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
@@ -169,7 +170,6 @@ function solve(solutionObj) {
                 }
             case '3':
                 {
-                    //currPosRow += 1;
                     context.clearRect(currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
                     currPosRow++;
                     context.drawImage(userImg, currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);

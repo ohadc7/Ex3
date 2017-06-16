@@ -21,7 +21,10 @@
                 maze2dArray.push(mazeArray);
                 mazeArray = [];
             }
-            $('#mazeCanvasName').mazeBoard('mazeBoard', maze2dArray, initPosition.Row, initPosition.Col, goalPosition.Row, goalPosition.Col, user, end, true);
+            $('#mazeCanvasName').mazeBoard('mazeBoard', maze2dArray, initPosition.Row, initPosition.Col, goalPosition.Row, goalPosition.Col, user, end, true,
+                function (direction, playerRow, playerCol) {
+                    alert(direction);
+                });
             $('#mazeCanvasName').mazeBoard('clearCanvas');
             $('#mazeCanvasName').mazeBoard('drawMaze');
             $('#mazeCanvasName').show();
