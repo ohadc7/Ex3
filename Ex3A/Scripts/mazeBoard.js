@@ -85,6 +85,10 @@
         },
         solveMaze: function(data){
             var solveObj = { solutionString: data, interval: null };
+            context.clearRect(currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
+            currPosRow = $(this).data("playerStartPos").row;
+            currPosCol = $(this).data("playerStartPos").col;
+            context.drawImage(userImg, currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
             solveObj.interval = setInterval(function () { solve(solveObj) }, 1000);
         },
         clearCanvas: function () {
