@@ -39,16 +39,18 @@ var ViewModel = function () {
     self.Email = ko.observable();
     self.addUser = function () {
         var usersUri = '/api/Users/';
-        var encryptPassword = b64_sha512(self.Password());
+
+        var shaObj = new jsSHA("SHA-256", "TEXT");
+        shaObj.update(self.Password());
+        var hash = shaObj.getHash("HEX");
         var user = {
             Name: self.Username(),
-            Password: encryptPassword,
+            Password: hash,
             Email: self.Email()
         };
         var usersExistsUri = '/Users/';
         $.getJSON(usersExistsUri + self.Username()).done(function (data) {
-            var returnString = JSON.parse(data);
-            if (returnString == "exist") {
+            if (data == "exist") {
 
             }
         });

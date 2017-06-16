@@ -56,9 +56,9 @@ namespace Ex3A.Controllers
         {
             if (db.Users.Count(e => e.Name == name && e.Password == password) > 0)
             {
-                return "exist";
+                return "OK";
             }
-                return "notExists";
+                return "notOk";
         }
 
         [HttpGet]
