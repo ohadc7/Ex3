@@ -7,21 +7,19 @@
 keyboardFunctionIsOn = false;
 
 (function( $ ){
+    var callbackFunc;
 
     var methods = {
         mazeBoard: function (mazeData, startRow, startCol, exitRow, exitCol, playerImage, exitImage, isEnabled, 
             callbackFunctionForMove//function(direction, playerRow, playerCol)
         ) {
-
-            callbackFunctionForMove("here the function callbackFunctionForMove can be executed, but it has to be called when the keyboard is pressed");
-
-
 			$(this).data("mazeData", mazeData);
 			$(this).data("playerStartPos", {row: startRow, col: startCol});
 			$(this).data("exitPos", {row: exitRow, col: exitCol});
 			$(this).data("playerImage", playerImage);
             $(this).data("exitImage", exitImage);
             $(this).data("isEnabled", isEnabled);
+            callbackFunc = callbackFunctionForMove;
         },
 
         drawMaze : function( ) {
@@ -61,6 +59,7 @@ keyboardFunctionIsOn = false;
                                 context.clearRect(currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
                                 currPosRow++;
                                 context.drawImage(userImg, currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
+                                callbackFunc("down", currPosRow, currPosCol);
                             }
                             break;
                         case "ArrowUp":
@@ -68,6 +67,7 @@ keyboardFunctionIsOn = false;
                                 context.clearRect(currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
                                 currPosRow--;
                                 context.drawImage(userImg, currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
+                                callbackFunc("up", currPosRow, currPosCol);
                             }
                             break;
                         case "ArrowLeft":
@@ -75,6 +75,7 @@ keyboardFunctionIsOn = false;
                                 context.clearRect(currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
                                 currPosCol--;
                                 context.drawImage(userImg, currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
+                                callbackFunc("left", currPosRow, currPosCol);
                             }
                             break;
                         case "ArrowRight":
@@ -82,6 +83,7 @@ keyboardFunctionIsOn = false;
                                 context.clearRect(currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
                                 currPosCol++;
                                 context.drawImage(userImg, currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
+                                callbackFunc("right", currPosRow, currPosCol);
                             }
                             break;
                         default:
