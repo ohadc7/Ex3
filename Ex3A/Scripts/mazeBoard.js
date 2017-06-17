@@ -4,6 +4,8 @@
 * and to https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent
 */
 keyboardFunctionIsOn = false;
+keyboardIsblocked = false;
+var index = 0;
 
 (function( $ ){
     var callbackFunc;
@@ -51,42 +53,44 @@ keyboardFunctionIsOn = false;
             callMeWhenKeyboardIsPressed =
                 function () {
                     //(event) => {
-                    const keyName = event.key;
-                    switch (keyName) {
-                        case "ArrowDown":
-                            if (currPosRow + 1 < rows && maze[currPosRow + 1][currPosCol] != 1) {
-                                context.clearRect(currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
-                                currPosRow++;
-                                context.drawImage(userImg, currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
-                                callbackFunc("down", currPosRow, currPosCol);
-                            }
-                            break;
-                        case "ArrowUp":
-                            if (currPosRow - 1 >= 0 && maze[currPosRow - 1][currPosCol] != 1) {
-                                context.clearRect(currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
-                                currPosRow--;
-                                context.drawImage(userImg, currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
-                                callbackFunc("up", currPosRow, currPosCol);
-                            }
-                            break;
-                        case "ArrowLeft":
-                            if (currPosCol - 1 >= 0 && maze[currPosRow][currPosCol - 1] != 1) {
-                                context.clearRect(currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
-                                currPosCol--;
-                                context.drawImage(userImg, currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
-                                callbackFunc("left", currPosRow, currPosCol);
-                            }
-                            break;
-                        case "ArrowRight":
-                            if (currPosCol + 1 < cols && maze[currPosRow][currPosCol + 1] != 1) {
-                                context.clearRect(currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
-                                currPosCol++;
-                                context.drawImage(userImg, currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
-                                callbackFunc("right", currPosRow, currPosCol);
-                            }
-                            break;
-                        default:
-                            return; // Quit when this doesn't handle the key event.
+                    if (keyboardFunctionIsOn && !keyboardIsblocked) {
+                        const keyName = event.key;
+                        switch (keyName) {
+                            case "ArrowDown":
+                                if (currPosRow + 1 < rows && maze[currPosRow + 1][currPosCol] != 1) {
+                                    context.clearRect(currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
+                                    currPosRow++;
+                                    context.drawImage(userImg, currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
+                                    callbackFunc("down", currPosRow, currPosCol);
+                                }
+                                break;
+                            case "ArrowUp":
+                                if (currPosRow - 1 >= 0 && maze[currPosRow - 1][currPosCol] != 1) {
+                                    context.clearRect(currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
+                                    currPosRow--;
+                                    context.drawImage(userImg, currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
+                                    callbackFunc("up", currPosRow, currPosCol);
+                                }
+                                break;
+                            case "ArrowLeft":
+                                if (currPosCol - 1 >= 0 && maze[currPosRow][currPosCol - 1] != 1) {
+                                    context.clearRect(currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
+                                    currPosCol--;
+                                    context.drawImage(userImg, currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
+                                    callbackFunc("left", currPosRow, currPosCol);
+                                }
+                                break;
+                            case "ArrowRight":
+                                if (currPosCol + 1 < cols && maze[currPosRow][currPosCol + 1] != 1) {
+                                    context.clearRect(currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
+                                    currPosCol++;
+                                    context.drawImage(userImg, currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
+                                    callbackFunc("right", currPosRow, currPosCol);
+                                }
+                                break;
+                            default:
+                                return; // Quit when this doesn't handle the key event.
+                        }
                     }
                 };
 
@@ -98,8 +102,11 @@ keyboardFunctionIsOn = false;
                 document.addEventListener('keydown', callMeWhenKeyboardIsPressed, false);
             }
         },
-        solveMaze: function(data){
+
+        solveMaze: function (data) {
+            index = 0;
             var solveObj = { solutionString: data, interval: null };
+            keyboardIsblocked = true;
             context.clearRect(currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
             currPosRow = $(this).data("playerStartPos").row;
             currPosCol = $(this).data("playerStartPos").col;
@@ -121,33 +128,15 @@ keyboardFunctionIsOn = false;
 
     };
 
-    $.fn.mazeBoard = function(methodOrOptions) {
-        if ( methods[methodOrOptions] ) {
-            return methods[ methodOrOptions ].apply( this, Array.prototype.slice.call( arguments, 1 ));
-        } else if ( typeof methodOrOptions === 'object' || ! methodOrOptions ) {
-            // Default to "init"
-            return methods.init.apply( this, arguments );
-        } else {
-            $.error( 'Method ' +  methodOrOptions + ' does not exist on jQuery.mazeBoard' );
-        }    
-    };
-
-})( jQuery );
-
-
- 
-
-var index = 0;
-function solve(solutionObj) {
-    //index++;
-    len = solutionObj.solutionString.length;
-    if (index >= len) {
-        clearInterval(solutionObj.interval);
-        return;
-    }
-    
-        switch (solutionObj.solutionString[index])
-        {
+    function solve(solutionObj) {
+        //index++;
+        len = solutionObj.solutionString.length;
+        if (index >= len) {
+            clearInterval(solutionObj.interval);
+            keyboardIsblocked = false;
+            return;
+        }
+        switch (solutionObj.solutionString[index]) {
             case '0':
                 {
                     context.clearRect(currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
@@ -178,8 +167,26 @@ function solve(solutionObj) {
                 }
             default:
                 break;
-    }
+        }
         if (index < len) {
             index++;
         }
-};
+    };
+
+    $.fn.mazeBoard = function(methodOrOptions) {
+        if ( methods[methodOrOptions] ) {
+            return methods[ methodOrOptions ].apply( this, Array.prototype.slice.call( arguments, 1 ));
+        } else if ( typeof methodOrOptions === 'object' || ! methodOrOptions ) {
+            // Default to "init"
+            return methods.init.apply( this, arguments );
+        } else {
+            $.error( 'Method ' +  methodOrOptions + ' does not exist on jQuery.mazeBoard' );
+        }    
+    };
+
+})( jQuery );
+
+
+ 
+
+
