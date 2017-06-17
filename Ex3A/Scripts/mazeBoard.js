@@ -3,7 +3,6 @@
 * https://stackoverflow.com/questions/1117086/how-to-create-a-jquery-plugin-with-methods/22976877#22976877
 * and to https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent
 */
-
 keyboardFunctionIsOn = false;
 
 (function( $ ){
@@ -11,7 +10,7 @@ keyboardFunctionIsOn = false;
 
     var methods = {
         mazeBoard: function (mazeData, startRow, startCol, exitRow, exitCol, playerImage, exitImage, isEnabled, 
-            callbackFunctionForMove//function(direction, playerRow, playerCol)
+            callbackFunctionForMove//function(direction, playerRow, playerCol) - direction is string "up"/"down"/"left"/"right". playerRow, playeCol are ints.
         ) {
 			$(this).data("mazeData", mazeData);
 			$(this).data("playerStartPos", {row: startRow, col: startCol});

@@ -24,7 +24,7 @@
             }
             $('#mazeCanvasName').mazeBoard('mazeBoard', maze2dArray, initPosition.Row, initPosition.Col, goalPosition.Row, goalPosition.Col, user, end, true,
                 function (direction, playerRow, playerCol) {
-                    alert("the player passed to the direction " + direction + " and arrived to row:" + playerRow + " column:" + playerCol);
+                    //alert("the player passed to the direction " + direction + " and arrived to row:" + playerRow + " column:" + playerCol);
                 });
             $('#mazeCanvasName').mazeBoard('clearCanvas');
             $('#mazeCanvasName').mazeBoard('drawMaze');
