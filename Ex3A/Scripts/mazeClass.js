@@ -1,3 +1,4 @@
+/*
 class Position {
 	constructor(row, col) {
 		this._row = row;
@@ -14,7 +15,7 @@ class Position {
 
 // JavaScript source code
 class Maze {
-	/*
+	
 	example:
 	    <canvas id="mazeCanvasName" width="300" height="90" style="border:2px black solid"></canvas>
 	    <img src="User.png" id="user" style="display: none;"/>
@@ -27,7 +28,7 @@ class Maze {
         const goalPos = new Position(2,9);
         maze = new Maze("mazeCanvasName", maze2dArray, 3, 11, initPos, goalPos);
 		</script>
-	*/
+	
 	constructor(canvas, maze, rows, cols, initialPos, goalPos) {
 		this._canvas = document.getElementById(canvas);
 		this._maze = maze;
@@ -86,3 +87,4 @@ class Maze {
 	}
 	
 }
+*/
