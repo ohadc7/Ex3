@@ -19,6 +19,7 @@ using MazeGeneratorLib;
 using MazeLib;
 using SearchAlgorithmsLib;
 using System.Text;
+using Microsoft.AspNet.SignalR.Hubs;
 
 namespace Ex3A.Models
 {
@@ -102,6 +103,15 @@ namespace Ex3A.Models
             return listOgGames;
         }
 
+        public MultiPlayerDS Join(string name, string ConnectId)
+        {
+            if (DictionaryOfMultiPlayerDS[name].AvailableToJoin)
+            {
+                DictionaryOfMultiPlayerDS[name].ConnectionIdSecond = ConnectId;
+            }
+           return DictionaryOfMultiPlayerDS[name];
+        }
+
         /// <summary>
         /// Solves the specified maze.
         /// </summary>
@@ -170,20 +180,25 @@ namespace Ex3A.Models
         /// <param name="cols">The cols.</param>
         /// <param name="host">The host.</param>
         /// <returns>MultiPlayerDS.</returns>
-        public MultiPlayerDS Start(string name, int rows, int cols, TcpClient host)
+        public MultiPlayerDS Start(string name, int rows, int cols, string ConnectionId)
         {
             if (DictionaryOfMazes.ContainsKey(name))
             {
-                var multiPlayerDs = new MultiPlayerDS(host, name, DictionaryOfMazes[name]);
+                var multiPlayerDs = new MultiPlayerDS(ConnectionId, name, DictionaryOfMazes[name]);
                 DictionaryOfMultiPlayerDS.Add(name, multiPlayerDs);
                 return multiPlayerDs;
             }
             else
             {
-                var multiPlayerDs = new MultiPlayerDS(host, name, Generate(name, rows, cols));
+                var multiPlayerDs = new MultiPlayerDS(ConnectionId, name, Generate(name, rows, cols));
                 DictionaryOfMultiPlayerDS.Add(name, multiPlayerDs);
                 return multiPlayerDs;
             }
+        }
+
+        public void Play(string move, string ConnectionId)
+        {
+
         }
     }
 }

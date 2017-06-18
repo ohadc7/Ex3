@@ -62,7 +62,7 @@ var index = 0;
                                     currPosRow++;
                                     context.drawImage(userImg, currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
                                     callbackFunc("down", currPosRow, currPosCol);
-                                    checkFinish();
+                                   // checkFinish();
                                 }
                                 break;
                             case "ArrowUp":
@@ -71,7 +71,7 @@ var index = 0;
                                     currPosRow--;
                                     context.drawImage(userImg, currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
                                     callbackFunc("up", currPosRow, currPosCol);
-                                    checkFinish();
+                                  //  checkFinish();
                                 }
                                 break;
                             case "ArrowLeft":
@@ -80,7 +80,7 @@ var index = 0;
                                     currPosCol--;
                                     context.drawImage(userImg, currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
                                     callbackFunc("left", currPosRow, currPosCol);
-                                    checkFinish();
+                                   // checkFinish();
                                 }
                                 break;
                             case "ArrowRight":
@@ -89,7 +89,7 @@ var index = 0;
                                     currPosCol++;
                                     context.drawImage(userImg, currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
                                     callbackFunc("right", currPosRow, currPosCol);
-                                    checkFinish();
+                                   // checkFinish();
                                 }
                                 break;
                             default:
@@ -179,10 +179,7 @@ var index = 0;
 
     function checkFinish() {
         if (currPosRow == goalPosRow && currPosCol == goalPosCol) {
-            new PNotify({
-                title: 'UserName Error!',
-                text: 'This Username is already taken, please choose another!',
-            });
+           
         }
     }
 

@@ -15,6 +15,7 @@ using System.Collections.Generic;
 using System.Net.Sockets;
 using MazeLib;
 using SearchAlgorithmsLib;
+using Microsoft.AspNet.SignalR.Hubs;
 
 namespace Ex3A.Models
 { 
@@ -56,12 +57,14 @@ namespace Ex3A.Models
         /// <param name="cols">The cols.</param>
         /// <param name="client">The client.</param>
         /// <returns>MultiPlayerDS.</returns>
-        MultiPlayerDS Start(string name, int rows, int cols, TcpClient client);
+        MultiPlayerDS Start(string name, int rows, int cols, string ConnectionId);
         /// <summary>
         /// Lists this instance.
         /// </summary>
         /// <returns>List&lt;System.String&gt;.</returns>
         List<string> List();
+
+        MultiPlayerDS Join(string name, string ConnectId);
         /// <summary>
         /// Gets the multi player data structure.
         /// </summary>

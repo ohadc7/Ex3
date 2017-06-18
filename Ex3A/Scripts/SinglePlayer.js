@@ -38,6 +38,13 @@ $("#btnStart").click(function () {
             }
             $('#mazeCanvasName').mazeBoard('mazeBoard', maze2dArray, initPosition.Row, initPosition.Col, goalPosition.Row, goalPosition.Col, user, end, true,
                 function (direction, playerRow, playerCol) {
+                    if (playerRow == goalPosition.Row && playerCol == goalPosition.Col) {
+                        new PNotify({
+                            title: 'You Win!',
+                            text: 'You finish the Game!',
+                            type: 'success',
+                        });
+                    }
                     //alert("the player passed to the direction " + direction + " and arrived to row:" + playerRow + " column:" + playerCol);
                 });
             $('#mazeCanvasName').mazeBoard('clearCanvas');

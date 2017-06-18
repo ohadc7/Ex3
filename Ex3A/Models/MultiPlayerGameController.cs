@@ -21,7 +21,7 @@ using MazeLib;
 using Newtonsoft.Json.Linq;
 
 namespace Ex3A.Models
-{
+{/*
     /// <summary>
     /// Class MultiPlayerGameController.
     /// </summary>
@@ -74,7 +74,7 @@ namespace Ex3A.Models
             commands.Add("play", new PlayCommand(multiPlayerDs, model));
             commands.Add("close", new CloseCommand(multiPlayerDs, model));*/
         }
-
+/*
         /// <summary>
         /// Executes the command.
         /// </summary>
@@ -92,6 +92,7 @@ namespace Ex3A.Models
                 var command = commands[parser.CommandKey];
                 command.Execute(parser.Args, client);
             }*/
+            /*
         }
 
         /// <summary>
@@ -198,5 +199,4 @@ namespace Ex3A.Models
 
             return playJObject.ToString();
         }
-    }
-}
+    }*/

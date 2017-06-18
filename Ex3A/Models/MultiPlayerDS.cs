@@ -14,6 +14,7 @@
 using System;
 using System.Net.Sockets;
 using MazeLib;
+using Microsoft.AspNet.SignalR.Hubs;
 
 //credit to the example from: https://msdn.microsoft.com/en-us/library/aa645739(v=vs.71).aspx
 
@@ -51,19 +52,12 @@ namespace Ex3A.Models
         /// </summary>
         /// <value><c>true</c> if closed; otherwise, <c>false</c>.</value>
         public bool Closed { get; private set; }
-        /// <summary>
-        /// Gets the host client.
-        /// </summary>
-        /// <value>The host client.</value>
-        public TcpClient HostClient { get; }
-        /// <summary>
-        /// Gets or sets the guest client.
-        /// </summary>
-        /// <value>The guest client.</value>
-        public TcpClient GuestClient { get; set; }
-        /// <summary>
-        /// The maze initialize
-        /// </summary>
+
+        public string ConnectionIdFirst;
+
+        public string ConnectionIdSecond;
+
+
         public Maze MazeInit;
         /// <summary>
         /// The guest current direction
@@ -113,11 +107,11 @@ namespace Ex3A.Models
         /// <param name="hostClient">The host client.</param>
         /// <param name="nameOfGame">The name of game.</param>
         /// <param name="maze">The maze.</param>
-        public MultiPlayerDS(TcpClient hostClient, string nameOfGame, Maze maze)
+        public MultiPlayerDS(string ConnectionId, string nameOfGame, Maze maze)
         {
-            HostClient = hostClient;
-            NameOfGame = nameOfGame;
-            GuestClient = null;
+            ConnectionIdFirst = ConnectionId;
+             NameOfGame = nameOfGame;
+            ConnectionIdSecond = null;
             MazeInit = maze;
             AvailableToJoin = true;
             Closed = false;
