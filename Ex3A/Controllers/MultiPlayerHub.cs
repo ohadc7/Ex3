@@ -4,39 +4,23 @@ using System.Linq;
 using System.Web;
 using Microsoft.AspNet.SignalR;
 using Ex3A.Models;
+using System.Collections.Concurrent;
 
 namespace Ex3A.Controllers
 {
     public class MultiPlayerHub : Hub
     {
-        private static IModel model = new Model();
+
+        private static ConcurrentDictionary<string, string> connectedUsers =
+            new ConcurrentDictionary<string, string>();
 
 
-        public List<string> List()
+        public void SendMessage(string senderPhoneNum, string recipientPhoneNum, string text)
         {
-            return model.List();
+            string recipientId = connectedUsers[recipientPhoneNum];
+            if (recipientId == null)
+                return;
+            Clients.Client(recipientId).gotMessage(senderPhoneNum, text);
         }
-        public void Start(string name, int rows, int cols)
-        {
-            MultiPlayerDS ds = model.Start(name, rows, cols, Context.ConnectionId);
-        }
-        public void Join(string name)
-        {
-            MultiPlayerDS ds = model.Join(name, Context.ConnectionId);
-
-        }
-
-        public void Play(string move)
-        {
-
-        }
-        public void Close()
-        {
-
-        }
-
-
-
-
     }
 }

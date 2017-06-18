@@ -35,7 +35,7 @@ namespace Ex3A.Models
     /// <summary>
     /// Class MultiPlayerDS.
     /// </summary>
-    internal class MultiPlayerDS
+    public class MultiPlayerDS
     {
         /// <summary>
         /// Gets the name of game.

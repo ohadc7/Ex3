@@ -182,6 +182,7 @@
   <ItemGroup>
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\MultiPlayerController.cs" />
     <Compile Include="Controllers\MultiPlayerHub.cs" />
     <Compile Include="Controllers\SinglePlayerController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
