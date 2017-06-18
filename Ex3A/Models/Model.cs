@@ -55,6 +55,7 @@ namespace Ex3A.Models
             DictionaryOfMazes = new Dictionary<string, Maze>();
             DictionaryOfMazesAndSolutions = new Dictionary<SearchableMaze, string>();
             DictionaryOfMultiPlayerDS = new Dictionary<string, MultiPlayerDS>();
+            DictionaryOfMultiPlayerDS.Add("test", new MultiPlayerDS("test","test",new Maze()));
         }
 
         /// <summary>

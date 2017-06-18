@@ -11,10 +11,10 @@ namespace Ex3A.Controllers
     {
         private static IModel model = new Model();
 
+
         public List<string> List()
         {
-            List<string> listOfGames = model.List();
-            return listOfGames;
+            return model.List();
         }
         public void Start(string name, int rows, int cols)
         {
