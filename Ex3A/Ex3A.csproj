@@ -110,6 +110,8 @@
     <Content Include="Content\jquery.pnotify.css" />
     <Content Include="Content\jquery.pnotify.icons.css" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\homePageScript.js" />
+    <Content Include="Scripts\SettingsScript.js" />
     <Content Include="Styles\bootstrap.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\checkSessionScript.js" />
@@ -128,6 +130,7 @@
     <Content Include="Scripts\mazeBoard.js" />
     <Content Include="Scripts\mazeClass.js" />
     <Content Include="Scripts\navBar.js" />
+    <Content Include="View\End.jpg" />
     <Content Include="View\HomePage.html" />
     <Content Include="View\Login.html" />
     <Content Include="View\MultiPlayer.html" />
@@ -136,6 +139,7 @@
     <Content Include="View\Register.html" />
     <Content Include="View\Settings.html" />
     <Content Include="View\SinglePlayer.html" />
+    <Content Include="View\User.png" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

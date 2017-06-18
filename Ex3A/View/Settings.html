@@ -15,40 +15,41 @@
                 <div class="form-group">
                     <label for="mazeRows" class="col-sm-2 control-label">Rows:</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="mazeRows" />
+                        <input type="number" class="form-control" id="mazeRows" />
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="mazeCols" class="col-sm-2 control-label">Cols:</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="mazeCols" />
+                        <input type="number" class="form-control" id="mazeCols" />
                     </div>
                 </div>
                 <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-
+                    <label for="mazeCols" class="col-sm-2 control-label">Algo:</label>
+                    <div class="col-sm-10">
                         <div id="tableDiv" class="dropdown">
-                            <button id="tableButton" class="btn dropdown-toggle" type="button" data-toggle="dropdown">
-                                choose Solve Algorithm
+                            <button id="mazeAlgorithm" class="btn dropdown-toggle" type="button" data-toggle="dropdown">
+                                DFS
                                 <span class="caret"></span>
                             </button>
                             <ul id="tableMenu" class="dropdown-menu">
-                                <li><a href="#">BFS</a></li>
                                 <li><a href="#">DFS</a></li>
+                                <li><a href="#">BFS</a></li>
                             </ul>
                         </div>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <button class="btn btn-default" id="btnSolve">Save</button>
+                        <button class="btn btn-default" id="btnSave">Save</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-            <script src="../Scripts/jquery-3.2.1.min.js"></script>
-            <script src="../Scripts/bootstrap.js"></script>
-            <script src="../Scripts/navBar.js"></script>
+    <script src="../Scripts/jquery-3.2.1.min.js"></script>
+    <script src="../Scripts/bootstrap.js"></script>
+    <script src="../Scripts/navBar.js"></script>
+    <script src="../Scripts/settingsScript.js"></script>
 </body>
 </html>

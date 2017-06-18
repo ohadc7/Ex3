@@ -1,4 +1,18 @@
-﻿$("#btnStart").click(function () {
+﻿window.onload = function () {
+    if (!localStorage.length) {
+        localStorage.setItem("defaultRows", "15");
+        localStorage.setItem("defaultCols", "15");
+        localStorage.setItem("defaultAlgorithm", "BFS");
+    }
+    document.getElementById("mazeRows").value = localStorage.getItem("defaultRows");
+    document.getElementById("mazeCols").value = localStorage.getItem("defaultCols");
+    var algo = localStorage.getItem("defaultAlgorithm");
+    $("#mazeAlgorithm").html(algo + ' ' + ' <span class="caret"></span>');
+    document.getElementById("mazeAlgorithm").text = algo;
+}
+
+
+$("#btnStart").click(function () {
     $(".loader").show();
     var apiUrl = "/SinglePlayer";
     name = $("#mazeName").val();
