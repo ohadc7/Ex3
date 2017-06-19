@@ -14,7 +14,6 @@ namespace Ex3A.Controllers
         private static ConcurrentDictionary<string, string> connectedUsers =
             new ConcurrentDictionary<string, string>();
 
-
         public void SendMessage(string senderPhoneNum, string recipientPhoneNum, string text)
         {
             string recipientId = connectedUsers[recipientPhoneNum];

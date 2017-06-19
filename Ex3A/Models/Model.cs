@@ -55,7 +55,7 @@ namespace Ex3A.Models
             DictionaryOfMazes = new Dictionary<string, Maze>();
             DictionaryOfMazesAndSolutions = new Dictionary<SearchableMaze, string>();
             DictionaryOfMultiPlayerDS = new Dictionary<string, MultiPlayerDS>();
-            DictionaryOfMultiPlayerDS.Add("test", new MultiPlayerDS("test","test",new Maze()));
+            //DictionaryOfMultiPlayerDS.Add("test", new MultiPlayerDS("test","test",new Maze()));
         }
 
         /// <summary>
@@ -104,13 +104,18 @@ namespace Ex3A.Models
             return listOgGames;
         }
 
-        public MultiPlayerDS Join(string name, string ConnectId)
+        //public MultiPlayerDS Join(string name, string ConnectId)
+        public MultiPlayerDS Join(string name)
         {
             if (DictionaryOfMultiPlayerDS[name].AvailableToJoin)
             {
-                DictionaryOfMultiPlayerDS[name].ConnectionIdSecond = ConnectId;
+                DictionaryOfMultiPlayerDS[name].AvailableToJoin = false;
+                //DictionaryOfMultiPlayerDS[name].ConnectionIdSecond = ConnectId;
+                return DictionaryOfMultiPlayerDS[name];
+            } else
+            {
+                return null;
             }
-           return DictionaryOfMultiPlayerDS[name];
         }
 
         /// <summary>
@@ -181,6 +186,7 @@ namespace Ex3A.Models
         /// <param name="cols">The cols.</param>
         /// <param name="host">The host.</param>
         /// <returns>MultiPlayerDS.</returns>
+/*
         public MultiPlayerDS Start(string name, int rows, int cols, string ConnectionId)
         {
             if (DictionaryOfMazes.ContainsKey(name))
@@ -192,6 +198,22 @@ namespace Ex3A.Models
             else
             {
                 var multiPlayerDs = new MultiPlayerDS(ConnectionId, name, Generate(name, rows, cols));
+                DictionaryOfMultiPlayerDS.Add(name, multiPlayerDs);
+                return multiPlayerDs;
+            }
+        }
+*/
+
+
+        public MultiPlayerDS Start(string name, int rows, int cols)
+        {
+            if(DictionaryOfMultiPlayerDS.ContainsKey(name))
+            {
+                return null;
+            } else
+            {
+                var maze = Generate(name, rows, cols); //generate and add to dictionary
+                var multiPlayerDs = new MultiPlayerDS(name, maze);
                 DictionaryOfMultiPlayerDS.Add(name, multiPlayerDs);
                 return multiPlayerDs;
             }

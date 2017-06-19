@@ -20,6 +20,7 @@ using Microsoft.AspNet.SignalR.Hubs;
 
 namespace Ex3A.Models
 {
+    /*
     // A delegate type for hooking up change notifications.
     /// <summary>
     /// Delegate ChangedEventHandler
@@ -35,6 +36,7 @@ namespace Ex3A.Models
     /// <summary>
     /// Class MultiPlayerDS.
     /// </summary>
+    */
     public class MultiPlayerDS
     {
         /// <summary>
@@ -52,13 +54,14 @@ namespace Ex3A.Models
         /// </summary>
         /// <value><c>true</c> if closed; otherwise, <c>false</c>.</value>
         public bool Closed { get; private set; }
-
+        /*
         public string ConnectionIdFirst;
 
         public string ConnectionIdSecond;
-
+        */
 
         public Maze MazeInit;
+        /*
         /// <summary>
         /// The guest current direction
         /// </summary>
@@ -100,18 +103,19 @@ namespace Ex3A.Models
         public event ChangedEventHandler SomebodyClosedTheGameEvent;
         public event ClienetPlayedEventHandler GuestPlayedEvent;
         public event ClienetPlayedEventHandler HostPlayActionOccurd;
-
+        */
         /// <summary>
         /// Initializes a new instance of the <see cref="MultiPlayerDS"/> class.
         /// </summary>
         /// <param name="hostClient">The host client.</param>
         /// <param name="nameOfGame">The name of game.</param>
         /// <param name="maze">The maze.</param>
-        public MultiPlayerDS(string ConnectionId, string nameOfGame, Maze maze)
+        //public MultiPlayerDS(string ConnectionId, string nameOfGame, Maze maze)
+        public MultiPlayerDS(string nameOfGame, Maze maze)
         {
-            ConnectionIdFirst = ConnectionId;
-             NameOfGame = nameOfGame;
-            ConnectionIdSecond = null;
+            //ConnectionIdFirst = ConnectionId;
+            NameOfGame = nameOfGame;
+            //ConnectionIdSecond = null;
             MazeInit = maze;
             AvailableToJoin = true;
             Closed = false;
@@ -123,7 +127,7 @@ namespace Ex3A.Models
         public void Close()
         {
             Closed = true;
-            SomebodyClosedTheGameEvent?.Invoke(this, EventArgs.Empty);
+            //SomebodyClosedTheGameEvent?.Invoke(this, EventArgs.Empty);
         }
     }
 }

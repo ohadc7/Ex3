@@ -57,14 +57,16 @@ namespace Ex3A.Models
         /// <param name="cols">The cols.</param>
         /// <param name="client">The client.</param>
         /// <returns>MultiPlayerDS.</returns>
-        MultiPlayerDS Start(string name, int rows, int cols, string ConnectionId);
+        //MultiPlayerDS Start(string name, int rows, int cols, string ConnectionId);
+        MultiPlayerDS Start(string name, int rows, int cols);
         /// <summary>
         /// Lists this instance.
         /// </summary>
         /// <returns>List&lt;System.String&gt;.</returns>
         List<string> List();
 
-        MultiPlayerDS Join(string name, string ConnectId);
+        //MultiPlayerDS Join(string name, string ConnectId);
+        MultiPlayerDS Join(string name);
         /// <summary>
         /// Gets the multi player data structure.
         /// </summary>
