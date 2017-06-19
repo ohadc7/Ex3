@@ -30,6 +30,11 @@ connectionWithOpponent.client.startPlaying = function () {
 
 };
 
+connectionWithOpponent.client.updateMove = function (direction) {
+    alert("your opponent moved to the direction:" + direction);
+};
+
+
 // Get the user name and store it to prepend to messages
 //var username = prompt('Enter your name:');
 // Set initial focus to message input box
@@ -87,6 +92,9 @@ $.connection.hub.start().done(function () {
                 //my maze
                 $('#mazeCanvasUser').mazeBoard('mazeBoard', maze2dArray, initPosition.Row, initPosition.Col, goalPosition.Row, goalPosition.Col, user1, end1, true,
                     function (direction, playerRow, playerCol) {
+
+                        connectionWithOpponent.server.iamMoving(name, direction);
+
                         if (playerRow == goalPosition.Row && playerCol == goalPosition.Col) {
                             new PNotify({
                                 title: 'You are the winner!',
@@ -198,6 +206,7 @@ $.connection.hub.start().done(function () {
                     //my maze
                     $('#mazeCanvasUser').mazeBoard('mazeBoard', maze2dArray, initPosition.Row, initPosition.Col, goalPosition.Row, goalPosition.Col, user1, end1, true,
                         function (direction, playerRow, playerCol) {
+                            connectionWithOpponent.server.iamMoving(selectedGame, direction);
                             if (playerRow == goalPosition.Row && playerCol == goalPosition.Col) {
                                 new PNotify({
                                     title: 'You are the winner!',

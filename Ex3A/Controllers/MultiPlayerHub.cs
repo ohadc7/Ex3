@@ -38,6 +38,19 @@ namespace Ex3A.Controllers
                 Clients.Client(games[gameName].JoinPlayer).startPlaying();
             }
         }
+
+        public void IamMoving(string gameName, string direction)
+        {
+            Game g = games[gameName];
+            if (g.StartPlayer == Context.ConnectionId)
+            {
+                Clients.Client(games[gameName].JoinPlayer).updateMove(direction);
+            }
+            else if (g.JoinPlayer == Context.ConnectionId)
+            {
+                Clients.Client(games[gameName].StartPlayer).updateMove(direction);
+            }
+        }
 /*
         public void Move(string direction)
         {
