@@ -31,7 +31,7 @@ connectionWithOpponent.client.startPlaying = function () {
 };
 
 connectionWithOpponent.client.updateMove = function (direction) {
-    alert("your opponent moved to the direction:" + direction);
+    //alert("your opponent moved to the direction:" + direction);
 };
 
 
@@ -90,7 +90,7 @@ $.connection.hub.start().done(function () {
 
 
                 //my maze
-                $('#mazeCanvasUser').mazeBoard('mazeBoard', maze2dArray, initPosition.Row, initPosition.Col, goalPosition.Row, goalPosition.Col, user1, end1, true,
+                $('#mazeCanvasUser').mazeBoard('mazeBoard', maze2dArray, initPosition.Row, initPosition.Col, goalPosition.Row, goalPosition.Col, user1, end1, false,
                     function (direction, playerRow, playerCol) {
 
                         connectionWithOpponent.server.iamMoving(name, direction);

@@ -36,7 +36,7 @@ $("#btnStart").click(function () {
                 maze2dArray.push(mazeArray);
                 mazeArray = [];
             }
-            $('#mazeCanvasName').mazeBoard('mazeBoard', maze2dArray, initPosition.Row, initPosition.Col, goalPosition.Row, goalPosition.Col, user, end, true,
+            var mazeObject = $.fn.mazeBoard('mazeBoard', maze2dArray, initPosition.Row, initPosition.Col, goalPosition.Row, goalPosition.Col, user, end, true,
                 function (direction, playerRow, playerCol) {
                     if (playerRow == goalPosition.Row && playerCol == goalPosition.Col) {
                         new PNotify({
@@ -47,8 +47,8 @@ $("#btnStart").click(function () {
                     }
                     //alert("the player passed to the direction " + direction + " and arrived to row:" + playerRow + " column:" + playerCol);
                 });
-            $('#mazeCanvasName').mazeBoard('clearCanvas');
-            $('#mazeCanvasName').mazeBoard('drawMaze');
+            mazeObject.drawMaze('mazeCanvasName');
+         mazeObject.mazeBoard('mazeCanvasName');
             $(".loader").hide();
             $('#mazeCanvasName').show();
         })
