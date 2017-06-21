@@ -9,7 +9,7 @@ var index = 0;
 
 (function ($) {
     var callbackFunc;
-    $.fn.mazeBoard = function (mazeData, startRow, startCol, exitRow, exitCol, playerImage, exitImage, isEnabled, callbackFunctionForMove) {
+    $.fn.mazeBoard = function (mazeData,rows,cols, startRow, startCol, exitRow, exitCol, playerImage, exitImage, isEnabled, callbackFunctionForMove) {
         var mazeObject = {
             //$(this).data("mazeData", mazeData);
             //$(this).data("playerStartPos", { row: startRow, col: startCol });
@@ -24,8 +24,13 @@ var index = 0;
             maze: mazeData,
            // myCanvas: $(this),
            // context: thisCanvas.getContext("2d"),
-            rows: maze.length,
-            cols: maze[0].length,
+            rows: rows,
+            cols: cols,
+            goalPosRow: startRow,
+            goalPosCol: startCol,
+            currPosRow: exitRow,
+       currPosCol: exitCol,
+            
 
 
 
@@ -35,22 +40,20 @@ var index = 0;
 
             drawMaze: function (nameOfCanvas) {
                 var Canvas = document.getElementById(nameOfCanvas);
-                cellWidth = canvas.width / cols;
-                cellHeight = canvas.height / rows;
-                for (var i = 0; i < rows; i++) {
-                    for (var j = 0; j < cols; j++) {
-                        if (maze[i][j] == 1) {
+                context = Canvas.getContext("2d");
+                cellWidth = Canvas.width / this.cols;
+                cellHeight = Canvas.height / this.rows;
+                for (var i = 0; i < this.rows; i++) {
+                    for (var j = 0; j < this.cols; j++) {
+                        if (this.maze[i][j] == 1) {
                             context.fillRect(cellWidth * j, cellHeight * i, cellWidth, cellHeight);
                         }
                     }
                 }
-                goalPosRow = $(this).data("exitPos").row;
-                goalPosCol = $(this).data("exitPos").col;
-                currPosRow = $(this).data("playerStartPos").row;
-                currPosCol = $(this).data("playerStartPos").col;
+               
 
-                context.drawImage(userImg, currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
-                context.drawImage(endImg, goalPosCol * cellWidth, goalPosRow * cellHeight, cellWidth, cellHeight);
+                context.drawImage(this.userImg, this.currPosCol * cellWidth, this.currPosRow * cellHeight, cellWidth, cellHeight);
+                context.drawImage(this.endImg, this.goalPosCol * cellWidth, this.goalPosRow * cellHeight, cellWidth, cellHeight);
 
                 callMeWhenKeyboardIsPressed =
                     function () {
@@ -59,38 +62,38 @@ var index = 0;
                             const keyName = event.key;
                             switch (keyName) {
                                 case "ArrowDown":
-                                    if (currPosRow + 1 < rows && maze[currPosRow + 1][currPosCol] != 1) {
-                                        context.clearRect(currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
-                                        currPosRow++;
-                                        context.drawImage(userImg, currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
-                                        callbackFunc("down", currPosRow, currPosCol);
+                                    if (this.this.this.currPosRow + 1 < this.rows && this.maze[this.currPosRow + 1][this.currPosCol] != 1) {
+                                        context.clearRect(this.currPosCol * cellWidth, this.currPosRow * cellHeight, cellWidth, cellHeight);
+                                        this.this.currPosRow++;
+                                        context.drawImage(this.userImg, this.currPosCol * cellWidth, this.currPosRow * cellHeight, cellWidth, cellHeight);
+                                        callbackFunc("down", this.currPosRow, this.currPosCol);
                                         // checkFinish();
                                     }
                                     break;
                                 case "ArrowUp":
-                                    if (currPosRow - 1 >= 0 && maze[currPosRow - 1][currPosCol] != 1) {
-                                        context.clearRect(currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
-                                        currPosRow--;
-                                        context.drawImage(userImg, currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
-                                        callbackFunc("up", currPosRow, currPosCol);
+                                    if (this.currPosRow - 1 >= 0 && this.maze[this.currPosRow - 1][this.currPosCol] != 1) {
+                                        context.clearRect(this.currPosCol * cellWidth, this.currPosRow * cellHeight, cellWidth, cellHeight);
+                                        this.currPosRow--;
+                                        context.drawImage(this.userImg, this.currPosCol * cellWidth, this.currPosRow * cellHeight, cellWidth, cellHeight);
+                                        callbackFunc("up", this.currPosRow, this.currPosCol);
                                         //  checkFinish();
                                     }
                                     break;
                                 case "ArrowLeft":
-                                    if (currPosCol - 1 >= 0 && maze[currPosRow][currPosCol - 1] != 1) {
-                                        context.clearRect(currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
-                                        currPosCol--;
-                                        context.drawImage(userImg, currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
-                                        callbackFunc("left", currPosRow, currPosCol);
+                                    if (this.currPosCol - 1 >= 0 && this.maze[this.currPosRow][this.currPosCol - 1] != 1) {
+                                        context.clearRect(this.currPosCol * cellWidth, this.currPosRow * cellHeight, cellWidth, cellHeight);
+                                        this.currPosCol--;
+                                        context.drawImage(this.userImg, this.currPosCol * cellWidth, this.currPosRow * cellHeight, cellWidth, cellHeight);
+                                        callbackFunc("left", this.currPosRow, this.currPosCol);
                                         // checkFinish();
                                     }
                                     break;
                                 case "ArrowRight":
-                                    if (currPosCol + 1 < cols && maze[currPosRow][currPosCol + 1] != 1) {
-                                        context.clearRect(currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
-                                        currPosCol++;
-                                        context.drawImage(userImg, currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
-                                        callbackFunc("right", currPosRow, currPosCol);
+                                    if (this.currPosCol + 1 < cols && this.maze[this.currPosRow][this.currPosCol + 1] != 1) {
+                                        context.clearRect(this.currPosCol * cellWidth, this.currPosRow * cellHeight, cellWidth, cellHeight);
+                                        this.currPosCol++;
+                                        context.drawImage(this.userImg, this.currPosCol * cellWidth, this.currPosRow * cellHeight, cellWidth, cellHeight);
+                                        callbackFunc("right", this.currPosRow, this.currPosCol);
                                         // checkFinish();
                                     }
                                     break;
@@ -109,14 +112,16 @@ var index = 0;
                 }
             },
 
-            solveMaze: function (data) {
+            solveMaze: function (nameOfCanvas,data) {
+                var canvas = document.getElementById(nameOfCanvas);
+                context = canvas.getContext("2d");
                 index = 0;
                 var solveObj = { solutionString: data, interval: null };
                 keyboardIsblocked = true;
-                context.clearRect(currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
-                currPosRow = $(this).data("playerStartPos").row;
-                currPosCol = $(this).data("playerStartPos").col;
-                context.drawImage(userImg, currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
+                context.clearRect(this.currPosCol * cellWidth, this.currPosRow * cellHeight, cellWidth, cellHeight);
+                this.currPosRow = $(this).data("playerStartPos").row;
+                this.currPosCol = $(this).data("playerStartPos").col;
+                context.drawImage(this.userImg, this.currPosCol * cellWidth, this.currPosRow * cellHeight, cellWidth, cellHeight);
                 solveObj.interval = setInterval(function () { solve(solveObj) }, 1000);
             },
             clearCanvas: function (nameOfCanvas) {
@@ -124,7 +129,7 @@ var index = 0;
                 var canvas = document.getElementById(nameOfCanvas);
                 context = canvas.getContext("2d");
 
-                context.clearRect(0, 0, thisCanvas.width, thisCanvas.height);
+                context.clearRect(0, 0, canvas.width, canvas.height);
                 if (keyboardFunctionIsOn) {
                     document.removeEventListener('keydown', callMeWhenKeyboardIsPressed);
                 }
@@ -145,30 +150,30 @@ var index = 0;
                     switch (solutionObj.solutionString[index]) {
                         case '0':
                             {
-                                context.clearRect(currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
-                                currPosCol--;
-                                context.drawImage(userImg, currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
+                                context.clearRect(this.currPosCol * cellWidth, this.this.currPosRow * cellHeight, cellWidth, cellHeight);
+                                this.currPosCol--;
+                                context.drawImage(userImg, this.currPosCol * cellWidth, this.this.currPosRow * cellHeight, cellWidth, cellHeight);
                                 break;
                             }
                         case '1':
                             {
-                                context.clearRect(currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
-                                currPosCol++;
-                                context.drawImage(userImg, currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
+                                context.clearRect(this.currPosCol * cellWidth, this.this.currPosRow * cellHeight, cellWidth, cellHeight);
+                                this.currPosCol++;
+                                context.drawImage(userImg, this.currPosCol * cellWidth, this.this.currPosRow * cellHeight, cellWidth, cellHeight);
                                 break;
                             }
                         case '2':
                             {
-                                context.clearRect(currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
-                                currPosRow--;
-                                context.drawImage(userImg, currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
+                                context.clearRect(this.currPosCol * cellWidth, this.this.currPosRow * cellHeight, cellWidth, cellHeight);
+                                this.this.currPosRow--;
+                                context.drawImage(userImg, this.currPosCol * cellWidth, this.this.currPosRow * cellHeight, cellWidth, cellHeight);
                                 break;
                             }
                         case '3':
                             {
-                                context.clearRect(currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
-                                currPosRow++;
-                                context.drawImage(userImg, currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
+                                context.clearRect(this.currPosCol * cellWidth, this.this.currPosRow * cellHeight, cellWidth, cellHeight);
+                                this.this.currPosRow++;
+                                context.drawImage(userImg, this.currPosCol * cellWidth, this.this.currPosRow * cellHeight, cellWidth, cellHeight);
                                 break;
                             }
                         default:
