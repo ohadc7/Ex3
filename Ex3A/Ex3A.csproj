@@ -156,7 +156,6 @@
     <Content Include="Scripts\knockout-3.4.2.debug.js" />
     <Content Include="Scripts\knockout-3.4.2.js" />
     <Content Include="Scripts\loginScript.js" />
-    <Content Include="Scripts\multiPlayerScript.js" />
     <Content Include="Styles\loader.css" />
     <Content Include="Styles\pnotify.custom.min.css" />
     <Content Include="Scripts\pnotify.custom.min.js" />
@@ -166,7 +165,6 @@
     <Content Include="Scripts\singlePlayer.js" />
     <Content Include="Scripts\jquery-3.2.1.min.js" />
     <Content Include="Scripts\mazeBoard.js" />
-    <Content Include="Scripts\mazeClass.js" />
     <Content Include="Scripts\navBar.js" />
     <Content Include="View\End.jpg" />
     <Content Include="View\HomePage.html" />

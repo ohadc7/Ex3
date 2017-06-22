@@ -19,8 +19,6 @@ namespace Ex3A.Controllers
 
 
         [HttpGet]
-        //[Route("MultiPlayer/{name}/{rows}/{cols}/{id}")]
-        //public string Start(string name, int rows, int cols, string id)
         [Route("MultiPlayer/{name}/{rows}/{cols}")]
         public string Start(string name, int rows, int cols)
         {
@@ -37,12 +35,9 @@ namespace Ex3A.Controllers
         }
 
         [HttpGet]
-        //[Route("MultiPlayer/{name}/{id}")]
-        //public string getJoin(string name, string id)
         [Route("MultiPlayer/{name}")]
         public string getJoin(string name)
         {
-            //MultiPlayerDS ds = model.Join(name, id);
             MultiPlayerDS ds = model.Join(name);
             if (ds != null)
             {
@@ -52,14 +47,6 @@ namespace Ex3A.Controllers
                 return "not available";
             }
         }
-/*
-        [HttpGet]
-        [Route("MultiPlayer/{move}")]
-        public void Play(string move)
-        {
-
-        }
-*/
 
         public void Close()
         {

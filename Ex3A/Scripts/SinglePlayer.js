@@ -9,6 +9,7 @@
     var algo = localStorage.getItem("defaultAlgorithm");
     $("#mazeAlgorithm").html(algo + ' ' + ' <span class="caret"></span>');
     document.getElementById("mazeAlgorithm").text = algo;
+    var mazeObject;
 }
 
 
@@ -36,7 +37,7 @@ $("#btnStart").click(function () {
                 maze2dArray.push(mazeArray);
                 mazeArray = [];
             }
-            var mazeObject = $.fn.mazeBoard(maze2dArray,rows,cols, initPosition.Row, initPosition.Col, goalPosition.Row, goalPosition.Col, user, end, true,
+            mazeObject = $.fn.mazeBoard(maze2dArray,rows,cols, initPosition.Row, initPosition.Col, goalPosition.Row, goalPosition.Col, user, end, true,
                 function (direction, playerRow, playerCol) {
                     if (playerRow == goalPosition.Row && playerCol == goalPosition.Col) {
                         new PNotify({
@@ -45,7 +46,6 @@ $("#btnStart").click(function () {
                             type: 'success',
                         });
                     }
-                    //alert("the player passed to the direction " + direction + " and arrived to row:" + playerRow + " column:" + playerCol);
                 });
             mazeObject.clearCanvas('mazeCanvasName');
             mazeObject.drawMaze('mazeCanvasName');
@@ -71,7 +71,7 @@ $("#btnSolve").click(function () {
         .done(function (data) {
 
             var solveString = data;
-            mazeObject.clearCanvas('mazeCanvasName',solveString);
+            mazeObject.solveMaze('mazeCanvasName', solveString);
            
         })
     .fail(function (jqXHR, textStatus, err) {
