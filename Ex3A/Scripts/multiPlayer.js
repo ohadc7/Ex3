@@ -11,9 +11,6 @@
 }
 
 
-
-
-
 // Declare a proxy to reference the hub
 var connectionWithOpponent = $.connection.multiPlayerHub;
 var mazeOpponentObject;
@@ -94,7 +91,6 @@ createMazes = function (obj) {
 // Start the connection
 $.connection.hub.start().done(function () {
 
-
     $("#btnStart").click(function () {
         $(".loader").show();
         var apiUrl = "/MultiPlayer";
@@ -109,47 +105,6 @@ $.connection.hub.start().done(function () {
                     return;
                 }
                 var obj = JSON.parse(data);
-                //var initPosition = obj.Start;
-                //var goalPosition = obj.End;
-                //mazeString = obj.Maze;
-                //var i, j;
-                //maze2dArray = [];
-                //mazeArray = [];
-                //for (i = 0; i < rows; i++) {
-                //    for (j = 0; j < cols; j++) {
-                //        mazeArray.push(mazeString.charAt(i * cols + j));
-
-                //    }
-                //    maze2dArray.push(mazeArray);
-                //    mazeArray = [];
-                //}
-
-                ////opponent maze
-                //mazeOpponentObject = $("#mazeCanvasOpponent").mazeBoard(maze2dArray, rows, cols, initPosition.Row,
-                //    initPosition.Col, goalPosition.Row, goalPosition.Col, user2, end2, true,
-                //    function (direction, playerRow, playerCol) {
-                //        if (playerRow == goalPosition.Row && playerCol == goalPosition.Col) {
-                //            new PNotify({
-                //                title: 'You Lose!',
-                //                text: 'Your opponent finished the game!',
-                //                type: 'success',
-                //            });
-                //        }
-                //    });
-
-                ////my maze
-                //mazeUserObject = $("#mazeCanvasUser").mazeBoard(maze2dArray, rows, cols, initPosition.Row,
-                //    initPosition.Col, goalPosition.Row, goalPosition.Col, user1, end1, false,
-                //    function (direction, playerRow, playerCol) {
-                //        connectionWithOpponent.server.iamMoving(name, direction);
-                //        if (playerRow == goalPosition.Row && playerCol == goalPosition.Col) {
-                //            new PNotify({
-                //                title: 'You Win!',
-                //                text: 'You finish the Game!',
-                //                type: 'success',
-                //            });
-                //        }
-                //    });
                 createMazes(obj);
 
                 // Call the StartGame method on the hub
@@ -177,50 +132,6 @@ $.connection.hub.start().done(function () {
 
                     name = selectedGame;
                     var obj = JSON.parse(data);
-                    //var initPosition = obj.Start;
-                    //var goalPosition = obj.End;
-                    //mazeString = obj.Maze;
-                    //rows = obj.Rows;
-                    //cols = obj.Cols;
-                    //var i, j;
-                    //maze2dArray = [];
-                    //mazeArray = [];
-                    //for (i = 0; i < rows; i++) {
-                    //    for (j = 0; j < cols; j++) {
-                    //        mazeArray.push(mazeString.charAt(i * cols + j));
-
-                    //    }
-                    //    maze2dArray.push(mazeArray);
-                    //    mazeArray = [];
-                    //}
-
-
-                    ////opponent maze
-                    //mazeOpponentObject = $("#mazeCanvasOpponent").mazeBoard(maze2dArray, rows, cols, initPosition.Row,
-                    //    initPosition.Col, goalPosition.Row, goalPosition.Col, user2, end2, true,
-                    //    function (direction, playerRow, playerCol) {
-                    //        if (playerRow == goalPosition.Row && playerCol == goalPosition.Col) {
-                    //            new PNotify({
-                    //                title: 'You Lose!',
-                    //                text: 'Your opponent finished the game!',
-                    //                type: 'success',
-                    //            });
-                    //        }
-                    //    });
-
-                    ////my maze
-                    //mazeUserObject = $("#mazeCanvasUser").mazeBoard(maze2dArray, rows, cols, initPosition.Row,
-                    //    initPosition.Col, goalPosition.Row, goalPosition.Col, user1, end1, false,
-                    //    function (direction, playerRow, playerCol) {
-                    //        connectionWithOpponent.server.iamMoving(name, direction);
-                    //        if (playerRow == goalPosition.Row && playerCol == goalPosition.Col) {
-                    //            new PNotify({
-                    //                title: 'You Win!',
-                    //                text: 'You finish the Game!',
-                    //                type: 'success',
-                    //            });
-                    //        }
-                    //    });
                     createMazes(obj);
 
                     connectionWithOpponent.server.joinGame(selectedGame);
@@ -229,11 +140,7 @@ $.connection.hub.start().done(function () {
                     $("#product").text("Error: " + err);
                 });
 
-
         });
-
-
-
 
 });
 
@@ -252,15 +159,4 @@ var ViewModel = function () {
     };
 };
 ko.applyBindings(new ViewModel()); // sets up the data binding
-
-
-
-
-
-
-
-
-
-
-
 

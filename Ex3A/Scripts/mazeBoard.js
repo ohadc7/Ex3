@@ -1,4 +1,3 @@
-//var gameIsRunning = false;
 keyboardIsblocked = false;
 var index = 0;
 
@@ -42,11 +41,9 @@ var index = 0;
 
                 if (this.movable) {
                     'use strict';
-                    gameIsRunning = true;
-                    //document.addEventListener('keydown', callMeWhenKeyboardIsPressed, false);
                     document.onkeydown =
                         function () {
-                            if (gameIsRunning && !keyboardIsblocked) {
+                            if (!keyboardIsblocked) {
                                 const keyName = event.key;
                                 switch (keyName) {
                                     case "ArrowDown":
@@ -88,8 +85,6 @@ var index = 0;
                         };
                 }
             },
-
- 
 
 
             solveMaze: function (nameOfCanvas,data) {
@@ -152,14 +147,6 @@ var index = 0;
                 context = canvas.getContext("2d");
                 context.clearRect(0, 0, canvas.width, canvas.height);
                 document.onkeydown = null;
-                /*
-                document.onkeydown = function (event) {
-                    //empty
-                };
-                */
-                //if (gameIsRunning) {
-                //    document.removeEventListener('keydown', this.callMeWhenKeyboardIsPressed);
-                //}
             },         
 
             move: function (nameOfCanvas, direction) {
@@ -168,8 +155,6 @@ var index = 0;
                 cellWidth = Canvas.width / this.cols;
                 cellHeight = Canvas.height / this.rows;
                 userImg = this.userImg;
-                //currPosRow = this.currPosRow;
-                //currPosCol = this.currPosCol;
                 callbackFunc = this.callbackFunc;
                 var maze = this.maze;
 
@@ -209,13 +194,10 @@ var index = 0;
                         default:
                             return; // Quit when this doesn't handle the key event.
                     }
-
             },
-
 
         }
         return mazeObject
     };
 
-    
 }( jQuery ));
