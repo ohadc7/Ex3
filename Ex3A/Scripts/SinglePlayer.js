@@ -37,7 +37,7 @@ $("#btnStart").click(function () {
                 maze2dArray.push(mazeArray);
                 mazeArray = [];
             }
-            mazeObject = $.fn.mazeBoard(maze2dArray,rows,cols, initPosition.Row, initPosition.Col, goalPosition.Row, goalPosition.Col, user, end, true,
+            mazeObject = $("#mazeCanvasName").mazeBoard(maze2dArray,rows,cols, initPosition.Row, initPosition.Col, goalPosition.Row, goalPosition.Col, user, end, true,
                 function (direction, playerRow, playerCol) {
                     if (playerRow == goalPosition.Row && playerCol == goalPosition.Col) {
                         new PNotify({

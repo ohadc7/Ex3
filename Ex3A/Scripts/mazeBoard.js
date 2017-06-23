@@ -1,4 +1,4 @@
-keyboardFunctionIsOn = false;
+//var gameIsRunning = false;
 keyboardIsblocked = false;
 var index = 0;
 
@@ -20,82 +20,83 @@ var index = 0;
 
 
             drawMaze: function (nameOfCanvas) {
-                var Canvas = document.getElementById(nameOfCanvas);
-                context = Canvas.getContext("2d");
-                cellWidth = Canvas.width / this.cols;
-                cellHeight = Canvas.height / this.rows;
-                userImg =  this.userImg;
-                currPosRow = this.currPosRow;
-                currPosCol = this.currPosCol;
-                callbackFunc = this.callbackFunc;
-                maze = this.maze;
+                var Canvas1 = document.getElementById(nameOfCanvas);
+                var context1 = Canvas1.getContext("2d");
+                var cellWidth1 = Canvas1.width / this.cols;
+                var cellHeight1 = Canvas1.height / this.rows;
+                var userImg1 =  this.userImg;
+                var currPosRow1 = this.currPosRow;
+                var currPosCol1 = this.currPosCol;
+                var callbackFunc1 = this.callbackFunc;
+                var maze1 = this.maze;
                 for (var i = 0; i < this.rows; i++) {
                     for (var j = 0; j < this.cols; j++) {
                         if (this.maze[i][j] == 1) {
-                            context.fillRect(cellWidth * j, cellHeight * i, cellWidth, cellHeight);
+                            context1.fillRect(cellWidth1 * j, cellHeight1 * i, cellWidth1, cellHeight1);
                         }
                     }
                 }
-               
 
-                context.drawImage(this.userImg, this.currPosCol * cellWidth, this.currPosRow * cellHeight, cellWidth, cellHeight);
-                context.drawImage(this.endImg, this.goalPosCol * cellWidth, this.goalPosRow * cellHeight, cellWidth, cellHeight);
-
-                callMeWhenKeyboardIsPressed =
-                    function () {
-                        if (keyboardFunctionIsOn && !keyboardIsblocked) {
-                            const keyName = event.key;
-                            switch (keyName) {
-                                case "ArrowDown":
-                                    if (currPosRow + 1 < rows && maze[currPosRow + 1][currPosCol] != 1) {
-                                        context.clearRect(currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
-                                        currPosRow++;
-                                        context.drawImage(userImg, currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
-                                        callbackFunc("down", currPosRow, currPosCol);
-                                    }
-                                    break;
-                                case "ArrowUp":
-                                    if (currPosRow - 1 >= 0 && maze[currPosRow - 1][currPosCol] != 1) {
-                                        context.clearRect(currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
-                                        currPosRow--;
-                                        context.drawImage(userImg, currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
-                                        callbackFunc("up", currPosRow, currPosCol);
-                                    }
-                                    break;
-                                case "ArrowLeft":
-                                    if (currPosCol - 1 >= 0 && maze[currPosRow][currPosCol - 1] != 1) {
-                                        context.clearRect(currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
-                                        currPosCol--;
-                                        context.drawImage(userImg, currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
-                                        callbackFunc("left", currPosRow, currPosCol);
-                                    }
-                                    break;
-                                case "ArrowRight":
-                                    if (currPosCol + 1 < cols && maze[currPosRow][currPosCol + 1] != 1) {
-                                        context.clearRect(currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
-                                        currPosCol++;
-                                        context.drawImage(userImg, currPosCol * cellWidth, currPosRow * cellHeight, cellWidth, cellHeight);
-                                        callbackFunc("right", currPosRow, currPosCol);
-                                    }
-                                    break;
-                                default:
-                                    return; // Quit when this doesn't handle the key event.
-                            }
-                        }
-                    };
-
-
+                context1.drawImage(this.userImg, this.currPosCol * cellWidth1, this.currPosRow * cellHeight1, cellWidth1, cellHeight1);
+                context1.drawImage(this.endImg, this.goalPosCol * cellWidth1, this.goalPosRow * cellHeight1, cellWidth1, cellHeight1);
 
                 if (this.movable) {
                     'use strict';
-                    keyboardFunctionIsOn = true;
-                    document.addEventListener('keydown', callMeWhenKeyboardIsPressed, false);
+                    gameIsRunning = true;
+                    //document.addEventListener('keydown', callMeWhenKeyboardIsPressed, false);
+                    document.onkeydown =
+                        function () {
+                            if (gameIsRunning && !keyboardIsblocked) {
+                                const keyName = event.key;
+                                switch (keyName) {
+                                    case "ArrowDown":
+                                        if (currPosRow1 + 1 < rows && maze1[currPosRow1 + 1][currPosCol1] != 1) {
+                                            context1.clearRect(currPosCol1 * cellWidth1, currPosRow1 * cellHeight1, cellWidth1, cellHeight1);
+                                            currPosRow1++;
+                                            context1.drawImage(userImg1, currPosCol1 * cellWidth1, currPosRow1 * cellHeight1, cellWidth1, cellHeight1);
+                                            callbackFunc1("down", currPosRow1, currPosCol1);
+                                        }
+                                        break;
+                                    case "ArrowUp":
+                                        if (currPosRow1 - 1 >= 0 && maze1[currPosRow1 - 1][currPosCol1] != 1) {
+                                            context1.clearRect(currPosCol1 * cellWidth1, currPosRow1 * cellHeight1, cellWidth1, cellHeight1);
+                                            currPosRow1--;
+                                            context1.drawImage(userImg1, currPosCol1 * cellWidth1, currPosRow1 * cellHeight1, cellWidth1, cellHeight1);
+                                            callbackFunc1("up", currPosRow1, currPosCol1);
+                                        }
+                                        break;
+                                    case "ArrowLeft":
+                                        if (currPosCol1 - 1 >= 0 && maze1[currPosRow1][currPosCol1 - 1] != 1) {
+                                            context1.clearRect(currPosCol1 * cellWidth1, currPosRow1 * cellHeight1, cellWidth1, cellHeight1);
+                                            currPosCol1--;
+                                            context1.drawImage(userImg1, currPosCol1 * cellWidth1, currPosRow1 * cellHeight1, cellWidth1, cellHeight1);
+                                            callbackFunc1("left", currPosRow1, currPosCol1);
+                                        }
+                                        break;
+                                    case "ArrowRight":
+                                        if (currPosCol1 + 1 < cols && maze1[currPosRow1][currPosCol1 + 1] != 1) {
+                                            context1.clearRect(currPosCol1 * cellWidth1, currPosRow1 * cellHeight1, cellWidth1, cellHeight1);
+                                            currPosCol1++;
+                                            context1.drawImage(userImg1, currPosCol1 * cellWidth1, currPosRow1 * cellHeight1, cellWidth1, cellHeight1);
+                                            callbackFunc1("right", currPosRow1, currPosCol1);
+                                        }
+                                        break;
+                                    default:
+                                        return; // Quit when this doesn't handle the key event.
+                                }
+                            }
+                        };
                 }
             },
+
+ 
+
 
             solveMaze: function (nameOfCanvas,data) {
                 var canvas = document.getElementById(nameOfCanvas);
                 context = canvas.getContext("2d");
+                cellWidth = canvas.width / this.cols;
+                cellHeight = canvas.height / this.rows;
                 index = 0;
                 var solveObj = { solutionString: data, interval: null, userImg: this.userImg, currPosRow:this.currPosRow, currPosCol: this.currPosCol, };
                 keyboardIsblocked = true;
@@ -146,14 +147,71 @@ var index = 0;
                     }
                 }, 1000);
             },
-            clearCanvas: function (nameOfCanvas) {
+            clearCanvas: function (nameOfCanvas, isIt) {
                 var canvas = document.getElementById(nameOfCanvas);
                 context = canvas.getContext("2d");
                 context.clearRect(0, 0, canvas.width, canvas.height);
-                if (keyboardFunctionIsOn) {
-                    document.removeEventListener('keydown', callMeWhenKeyboardIsPressed);
-                }
+                document.onkeydown = null;
+                /*
+                document.onkeydown = function (event) {
+                    //empty
+                };
+                */
+                //if (gameIsRunning) {
+                //    document.removeEventListener('keydown', this.callMeWhenKeyboardIsPressed);
+                //}
             },         
+
+            move: function (nameOfCanvas, direction) {
+                var Canvas = document.getElementById(nameOfCanvas);
+                context = Canvas.getContext("2d");
+                cellWidth = Canvas.width / this.cols;
+                cellHeight = Canvas.height / this.rows;
+                userImg = this.userImg;
+                //currPosRow = this.currPosRow;
+                //currPosCol = this.currPosCol;
+                callbackFunc = this.callbackFunc;
+                var maze = this.maze;
+
+                    switch (direction) {
+                        case "down":
+                            if (this.currPosRow + 1 < rows && maze[this.currPosRow + 1][this.currPosCol] != 1) {
+                                context.clearRect(this.currPosCol * cellWidth, this.currPosRow * cellHeight, cellWidth, cellHeight);
+                                this.currPosRow++;
+                                context.drawImage(userImg, this.currPosCol * cellWidth, this.currPosRow * cellHeight, cellWidth, cellHeight);
+                                callbackFunc("down", this.currPosRow, this.currPosCol);
+                            }
+                            break;
+                        case "up":
+                            if (this.currPosRow - 1 >= 0 && maze[this.currPosRow - 1][this.currPosCol] != 1) {
+                                context.clearRect(this.currPosCol * cellWidth, this.currPosRow * cellHeight, cellWidth, cellHeight);
+                                this.currPosRow--;
+                                context.drawImage(userImg, this.currPosCol * cellWidth, this.currPosRow * cellHeight, cellWidth, cellHeight);
+                                callbackFunc("up", this.currPosRow, this.currPosCol);
+                            }
+                            break;
+                        case "left":
+                            if (this.currPosCol - 1 >= 0 && maze[this.currPosRow][this.currPosCol - 1] != 1) {
+                                context.clearRect(this.currPosCol * cellWidth, this.currPosRow * cellHeight, cellWidth, cellHeight);
+                                this.currPosCol--;
+                                context.drawImage(userImg, this.currPosCol * cellWidth, this.currPosRow * cellHeight, cellWidth, cellHeight);
+                                callbackFunc("left", this.currPosRow, this.currPosCol);
+                            }
+                            break;
+                        case "right":
+                            if (this.currPosCol + 1 < cols && maze[this.currPosRow][this.currPosCol + 1] != 1) {
+                                context.clearRect(this.currPosCol * cellWidth, this.currPosRow * cellHeight, cellWidth, cellHeight);
+                                this.currPosCol++;
+                                context.drawImage(userImg, this.currPosCol * cellWidth, this.currPosRow * cellHeight, cellWidth, cellHeight);
+                                callbackFunc("right", this.currPosRow, this.currPosCol);
+                            }
+                            break;
+                        default:
+                            return; // Quit when this doesn't handle the key event.
+                    }
+
+            },
+
 
         }
         return mazeObject
