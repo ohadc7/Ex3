@@ -51,18 +51,14 @@ var ViewModel = function () {
         var usersExistsUri = '/Users/';
         $.getJSON(usersExistsUri + self.Username()).done(function (data) {
             $(".loader").hide();
-            if (data == "exist") {
-
+            if (data == "notExists") {
+                $.post(usersUri, user).done(function (item) {
+                    self.users.push(item);
+                    sessionStorage.setItem("userName", user.Name);
+                    window.location.replace("HomePage.html");
+                });
             }
-        });
-
-        $.post(usersUri, user).done(function (item) {
-            self.users.push(item);
-            sessionStorage.setItem("userName", user.Name);
-            window.location.replace("HomePage.html");
-        });
-
-       
+        }); 
     }
 };
 ko.applyBindings(new ViewModel());
