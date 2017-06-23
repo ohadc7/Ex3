@@ -102,6 +102,14 @@ var index = 0;
                     len = solveObj.solutionString.length;
                     if (index >= len) {
                         clearInterval(solveObj.interval);
+
+                        setTimeout(function () {
+                            var canvas = document.getElementById(nameOfCanvas);
+                            context = canvas.getContext("2d");
+                            context.clearRect(0, 0, canvas.width, canvas.height);
+                            document.onkeydown = null;
+                        }, 2500);
+
                         keyboardIsblocked = false;
                         return;
                     }

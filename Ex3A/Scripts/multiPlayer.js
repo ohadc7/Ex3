@@ -6,8 +6,9 @@
     }
     document.getElementById("mazeRows").value = localStorage.getItem("defaultRows");
     document.getElementById("mazeCols").value = localStorage.getItem("defaultCols");
-    var algo = localStorage.getItem("defaultAlgorithm");
-    $("#mazeAlgorithm").html(algo + ' ' + ' <span class="caret"></span>');
+    //var algo = localStorage.getItem("defaultAlgorithm");
+    //$("#mazeAlgorithm").html(algo + ' ' + ' <span class="caret"></span>');
+
 }
 
 
@@ -42,7 +43,7 @@ connectionWithOpponent.client.updateMove = function (direction) {
     mazeOpponentObject.move('mazeCanvasOpponent', direction);
 };
 
-createMazes = function (obj) {
+function createMazes(obj) {
     var initPosition = obj.Start;
     var goalPosition = obj.End;
     mazeString = obj.Maze;
@@ -59,6 +60,7 @@ createMazes = function (obj) {
         maze2dArray.push(mazeArray);
         mazeArray = [];
     }
+    var myUserName = sessionStorage.getItem("userName");
 
     //opponent maze
     mazeOpponentObject = $("#mazeCanvasOpponent").mazeBoard(maze2dArray, rows, cols, initPosition.Row,
@@ -68,8 +70,11 @@ createMazes = function (obj) {
                 new PNotify({
                     title: 'You Lose!',
                     text: 'Your opponent finished the game!',
-                    type: 'success',
                 });
+                setTimeout(function () {
+                    mazeUserObject.clearCanvas('mazeCanvasUser');
+                    mazeOpponentObject.clearCanvas('mazeCanvasOpponent');
+                }, 2500);
             }
         });
 
@@ -84,6 +89,15 @@ createMazes = function (obj) {
                     text: 'You finish the Game!',
                     type: 'success',
                 });
+                var url = "/MultiPlayer/Iwon/" + name + "/" + myUserName;
+                $.getJSON(url)
+                    .done(function (data) {
+                        alert(data);
+                    });
+                setTimeout(function () {
+                    mazeUserObject.clearCanvas('mazeCanvasUser');
+                    mazeOpponentObject.clearCanvas('mazeCanvasOpponent');
+                }, 2500);
             }
         });
 };
@@ -91,14 +105,16 @@ createMazes = function (obj) {
 // Start the connection
 $.connection.hub.start().done(function () {
 
+    var myUserName = sessionStorage.getItem("userName");
+
     $("#btnStart").click(function () {
-        $(".loader").show();
+        //$(".loader").show();
         var apiUrl = "/MultiPlayer";
         name = $("#mazeName").val();
         cols = $("#mazeCols").val();
         rows = $("#mazeRows").val();
 
-        $.getJSON(apiUrl + "/" + name + "/" + rows + "/" + cols)
+        $.getJSON(apiUrl + "/" + name + "/" + rows + "/" + cols + "/" + myUserName)
             .done(function (data) {
                 if (data == "not available") {
                     alert("another maze already has this name. please choose another name.");
@@ -118,12 +134,12 @@ $.connection.hub.start().done(function () {
     });
 
         $("#btnJoin").click(function () {
-            $(".loader").show();
+           // $(".loader").show();
             apiUrl = "/MultiPlayer";
             gamesList = document.getElementById("gamesDropdown");
             selectedGame = gamesList.options[gamesList.selectedIndex].value;
-            thePath = apiUrl + '/' + selectedGame;
-            $.getJSON(apiUrl + '/' + selectedGame)
+            //thePath = apiUrl + '/' + selectedGame;
+            $.getJSON(apiUrl + '/' + selectedGame + "/" + myUserName)
                 .done(function (data) {
                     if (data == "not available") {
                         alert("this game isn't available. please choose another game.");

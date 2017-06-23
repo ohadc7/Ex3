@@ -19,7 +19,10 @@ $("#btnStart").click(function () {
     name = $("#mazeName").val();
     cols = $("#mazeCols").val();
     rows = $("#mazeRows").val();
-
+    if (name == "") {
+        alert("please enter name of maze");
+        return;
+    }
     $.getJSON(apiUrl + "/" + name + "/" + rows + "/" + cols)
         .done(function (data) {
             var obj = JSON.parse(data);
@@ -72,7 +75,6 @@ $("#btnSolve").click(function () {
 
             var solveString = data;
             mazeObject.solveMaze('mazeCanvasName', solveString);
-           
         })
     .fail(function (jqXHR, textStatus, err) {
         $("#product").text("Error: " + err);

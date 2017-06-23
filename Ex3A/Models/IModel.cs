@@ -58,7 +58,7 @@ namespace Ex3A.Models
         /// <param name="client">The client.</param>
         /// <returns>MultiPlayerDS.</returns>
         //MultiPlayerDS Start(string name, int rows, int cols, string ConnectionId);
-        MultiPlayerDS Start(string name, int rows, int cols);
+        MultiPlayerDS Start(string mazeName, int rows, int cols, string username);
         /// <summary>
         /// Lists this instance.
         /// </summary>
@@ -66,12 +66,14 @@ namespace Ex3A.Models
         List<string> List();
 
         //MultiPlayerDS Join(string name, string ConnectId);
-        MultiPlayerDS Join(string name);
+        MultiPlayerDS Join(string mazeName, string username);
         /// <summary>
         /// Gets the multi player data structure.
         /// </summary>
         /// <param name="name">The name.</param>
         /// <returns>MultiPlayerDS.</returns>
         MultiPlayerDS GetMultiPlayerDataStructure(string name);
+
+        void updateWinnerOfGame(string gameName, string winnerUsername);
     }
 }

@@ -19,10 +19,10 @@ namespace Ex3A.Controllers
 
 
         [HttpGet]
-        [Route("MultiPlayer/{name}/{rows}/{cols}")]
-        public string Start(string name, int rows, int cols)
+        [Route("MultiPlayer/{mazeName}/{rows}/{cols}/{userName}")]
+        public string Start(string mazeName, int rows, int cols, string userName)
         {
-            var mpds = model.Start(name, rows, cols);
+            var mpds = model.Start(mazeName, rows, cols, userName);
             if (mpds != null)
             {
                 return mpds.MazeInit.ToJSON();
@@ -35,10 +35,10 @@ namespace Ex3A.Controllers
         }
 
         [HttpGet]
-        [Route("MultiPlayer/{name}")]
-        public string getJoin(string name)
+        [Route("MultiPlayer/{mazeName}/{userName}")]
+        public string getJoin(string mazeName, string userName)
         {
-            MultiPlayerDS ds = model.Join(name);
+            MultiPlayerDS ds = model.Join(mazeName, userName);
             if (ds != null)
             {
                 return ds.MazeInit.ToJSON();
@@ -53,6 +53,16 @@ namespace Ex3A.Controllers
 
         }
 
+        [HttpGet]
+        [Route("MultiPlayer/Iwon/{mazeName}/{myUerName}")]
+        public string IamTheWinner(string mazeName, string myUerName)
+        {
+            model.updateWinnerOfGame(mazeName, myUerName);
+            string startPlayer = model.GetMultiPlayerDataStructure(mazeName).usernameOfStartPlayer;
+            string joinPlayer = model.GetMultiPlayerDataStructure(mazeName).usernameOfJoinPlayer;
+            return startPlayer + ", You won the game against " + joinPlayer + ". Shkoyech!";
+        }
+        
 
     }
 }

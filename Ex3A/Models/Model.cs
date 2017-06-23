@@ -66,28 +66,28 @@ namespace Ex3A.Models
         /// <summary>
         /// Generates the specified name.
         /// </summary>
-        /// <param name="name">The name.</param>
+        /// <param name="gameName">The name.</param>
         /// <param name="rows">The rows.</param>
         /// <param name="cols">The cols.</param>
         /// <returns>Maze.</returns>
-        public Maze Generate(string name, int rows, int cols)
+        public Maze Generate(string gameName, int rows, int cols)
         {
             var dfsMazeGenerator = new DFSMazeGenerator();
             var MyMaze = dfsMazeGenerator.Generate(rows, cols);
-            MyMaze.Name = name;
-            DictionaryOfMazes[name] = MyMaze;
+            MyMaze.Name = gameName;
+            DictionaryOfMazes[gameName] = MyMaze;
             return MyMaze;
         }
 
         /// <summary>
         /// Gets the multi player data structure.
         /// </summary>
-        /// <param name="name">The name.</param>
+        /// <param name="gameName">The name.</param>
         /// <returns>MultiPlayerDS.</returns>
         /// <exception cref="System.NotImplementedException"></exception>
-        public MultiPlayerDS GetMultiPlayerDataStructure(string name)
+        public MultiPlayerDS GetMultiPlayerDataStructure(string gameName)
         {
-            if (DictionaryOfMultiPlayerDS.ContainsKey(name)) return DictionaryOfMultiPlayerDS[name];
+            if (DictionaryOfMultiPlayerDS.ContainsKey(gameName)) return DictionaryOfMultiPlayerDS[gameName];
             throw new NotImplementedException();
         }
 
@@ -105,13 +105,13 @@ namespace Ex3A.Models
         }
 
         //public MultiPlayerDS Join(string name, string ConnectId)
-        public MultiPlayerDS Join(string name)
+        public MultiPlayerDS Join(string gameName, string username)
         {
-            if (DictionaryOfMultiPlayerDS[name].AvailableToJoin)
+            if (DictionaryOfMultiPlayerDS[gameName].AvailableToJoin)
             {
-                DictionaryOfMultiPlayerDS[name].AvailableToJoin = false;
-                //DictionaryOfMultiPlayerDS[name].ConnectionIdSecond = ConnectId;
-                return DictionaryOfMultiPlayerDS[name];
+                DictionaryOfMultiPlayerDS[gameName].AvailableToJoin = false;
+                DictionaryOfMultiPlayerDS[gameName].usernameOfJoinPlayer = username;
+                return DictionaryOfMultiPlayerDS[gameName];
             } else
             {
                 return null;
@@ -121,12 +121,12 @@ namespace Ex3A.Models
         /// <summary>
         /// Solves the specified maze.
         /// </summary>
-        /// <param name="name">The name.</param>
+        /// <param name="mazeName">The name.</param>
         /// <param name="algorithmNumber">The algorithm number.</param>
         /// <returns>Solution.</returns>
-        public string Solve(string name, int algorithmNumber)
+        public string Solve(string mazeName, int algorithmNumber)
         {
-            var maze = DictionaryOfMazes[name];
+            var maze = DictionaryOfMazes[mazeName];
             var searchableMaze = new SearchableMaze(maze);
             if (DictionaryOfMazesAndSolutions.ContainsKey(searchableMaze))
                 return DictionaryOfMazesAndSolutions[searchableMaze];
@@ -178,43 +178,26 @@ namespace Ex3A.Models
             }
             return solutionStringBuilder.ToString();
         }
+
+
         /// <summary>
         /// Starts a new multi plyer game by set the info for it
         /// </summary>
-        /// <param name="name">The name.</param>
+        /// <param name="gameName">The name.</param>
         /// <param name="rows">The rows.</param>
         /// <param name="cols">The cols.</param>
         /// <param name="host">The host.</param>
         /// <returns>MultiPlayerDS.</returns>
-/*
-        public MultiPlayerDS Start(string name, int rows, int cols, string ConnectionId)
+        public MultiPlayerDS Start(string gameName, int rows, int cols, string username)
         {
-            if (DictionaryOfMazes.ContainsKey(name))
-            {
-                var multiPlayerDs = new MultiPlayerDS(ConnectionId, name, DictionaryOfMazes[name]);
-                DictionaryOfMultiPlayerDS.Add(name, multiPlayerDs);
-                return multiPlayerDs;
-            }
-            else
-            {
-                var multiPlayerDs = new MultiPlayerDS(ConnectionId, name, Generate(name, rows, cols));
-                DictionaryOfMultiPlayerDS.Add(name, multiPlayerDs);
-                return multiPlayerDs;
-            }
-        }
-*/
-
-
-        public MultiPlayerDS Start(string name, int rows, int cols)
-        {
-            if(DictionaryOfMultiPlayerDS.ContainsKey(name))
+            if(DictionaryOfMultiPlayerDS.ContainsKey(gameName))
             {
                 return null;
             } else
             {
-                var maze = Generate(name, rows, cols); //generate and add to dictionary
-                var multiPlayerDs = new MultiPlayerDS(name, maze);
-                DictionaryOfMultiPlayerDS.Add(name, multiPlayerDs);
+                var maze = Generate(gameName, rows, cols); //generate and add to dictionary
+                var multiPlayerDs = new MultiPlayerDS(gameName, maze, username);
+                DictionaryOfMultiPlayerDS.Add(gameName, multiPlayerDs);
                 return multiPlayerDs;
             }
         }
@@ -223,5 +206,12 @@ namespace Ex3A.Models
         {
 
         }
+
+        public void updateWinnerOfGame(string gameName, string winnerUsername)
+        {
+            
+        }
+
     }
+
 }

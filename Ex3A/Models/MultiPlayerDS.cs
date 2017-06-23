@@ -20,23 +20,6 @@ using Microsoft.AspNet.SignalR.Hubs;
 
 namespace Ex3A.Models
 {
-    /*
-    // A delegate type for hooking up change notifications.
-    /// <summary>
-    /// Delegate ChangedEventHandler
-    /// </summary>
-    /// <param name="sender">The sender.</param>
-    /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
-    public delegate void ChangedEventHandler(object sender, EventArgs e);
-    /// <summary>
-    /// Delegate ClienetPlayedEventHandler
-    /// </summary>
-    /// <param name="direction">The direction.</param>
-    public delegate void ClienetPlayedEventHandler(Direction direction);
-    /// <summary>
-    /// Class MultiPlayerDS.
-    /// </summary>
-    */
     public class MultiPlayerDS
     {
         /// <summary>
@@ -54,56 +37,13 @@ namespace Ex3A.Models
         /// </summary>
         /// <value><c>true</c> if closed; otherwise, <c>false</c>.</value>
         public bool Closed { get; private set; }
-        /*
-        public string ConnectionIdFirst;
-
-        public string ConnectionIdSecond;
-        */
-
-        public Maze MazeInit;
-        /*
-        /// <summary>
-        /// The guest current direction
-        /// </summary>
-        private Direction guestCurrentDirection;
-        /// <summary>
-        /// The host current direction
-        /// </summary>
-        private Direction hostCurrentDirection;
-
-        /// <summary>
-        /// Gets or sets the host current direction.
-        /// </summary>
-        /// <value>The host current direction.</value>
-        public Direction HostCurrentDirection
-        {
-            get { return hostCurrentDirection; }
-            set
-            {
-                hostCurrentDirection = value;
-                HostPlayActionOccurd?.Invoke(hostCurrentDirection);
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets the guest current direction.
-        /// </summary>
-        /// <value>The guest current direction.</value>
-        public Direction GuestCurrentDirection
-        {
-            get { return guestCurrentDirection; }
-            set
-            {
-                guestCurrentDirection = value;
-                GuestPlayedEvent?.Invoke(guestCurrentDirection);
-            }
-        }
         
-        // An events that clients can use to be notified whenever the MultiPlayerDS.Closed change.
-        public event ChangedEventHandler SomebodyClosedTheGameEvent;
-        public event ClienetPlayedEventHandler GuestPlayedEvent;
-        public event ClienetPlayedEventHandler HostPlayActionOccurd;
-        */
+        public string usernameOfStartPlayer;
+
+        public string usernameOfJoinPlayer;
+        
+        public Maze MazeInit;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="MultiPlayerDS"/> class.
         /// </summary>
@@ -111,11 +51,11 @@ namespace Ex3A.Models
         /// <param name="nameOfGame">The name of game.</param>
         /// <param name="maze">The maze.</param>
         //public MultiPlayerDS(string ConnectionId, string nameOfGame, Maze maze)
-        public MultiPlayerDS(string nameOfGame, Maze maze)
+        public MultiPlayerDS(string nameOfGame, Maze maze, string startPlayerUsername)
         {
-            //ConnectionIdFirst = ConnectionId;
+            usernameOfStartPlayer = startPlayerUsername;
             NameOfGame = nameOfGame;
-            //ConnectionIdSecond = null;
+            usernameOfJoinPlayer = null;
             MazeInit = maze;
             AvailableToJoin = true;
             Closed = false;
@@ -127,7 +67,6 @@ namespace Ex3A.Models
         public void Close()
         {
             Closed = true;
-            //SomebodyClosedTheGameEvent?.Invoke(this, EventArgs.Empty);
         }
     }
 }
