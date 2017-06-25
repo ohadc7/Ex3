@@ -4,6 +4,18 @@
     self.Username = ko.observable();
     self.Password = ko.observable();
     self.login = function () {
+        if ($("#userName").val() === "") {
+            new PNotify({
+                text: 'Please enter User Name'
+            });
+            return;
+        }
+        if ($("#password").val() === "") {
+            new PNotify({
+                text: 'Please enter Password'
+            });
+            return;
+        }
         $(".loader").show();
         var usersUri = '/api/Users/';
         var shaObj = new jsSHA("SHA-256", "TEXT");
@@ -13,26 +25,26 @@
         var usersExistsUri = '/Users/';
         $.getJSON(usersExistsUri + userName).done(function (data) {
             $(".loader").hide();
-            if (data == "exist") {
+            if (data === "exist") {
                 var usersCheckCorrectUserAndPassword = '/Users/';
                 $.getJSON(usersCheckCorrectUserAndPassword + userName + "/" + hash + "/" + "1").done(function (data) {
-                    if (data == "OK") {
+                    if (data === "OK") {
                         sessionStorage.setItem("userName", userName);
                         window.location.replace("HomePage.html");
                     } else {
                         new PNotify({
                             title: 'Password Error!',
-                            text: 'Your password is incroect, please try again.',
+                            text: 'Your password is incroect, please try again.'
                         });
                     }
                 });
             } else {
                 new PNotify({
                     title: 'UserName Error!',
-                    text: 'This Username is not part of our DataBase!',
+                    text: 'This Username is not part of our DataBase!'
                 });
             }
         });
-    }
+    };
 };
 ko.applyBindings(new ViewModel());

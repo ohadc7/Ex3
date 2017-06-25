@@ -1,8 +1,10 @@
-keyboardIsblocked = false;
+keyboardIsblocked = false; //to block keyboard when the maze is solved
 var index = 0;
 
+//maze board plugin
 (function ($) {
-    $.fn.mazeBoard = function (mazeData,rows,cols, startRow, startCol, exitRow, exitCol, playerImage, exitImage, isEnabled, callbackFunctionForMove) {
+    //'constructor'
+    $.fn.mazeBoard = function (mazeData, rows, cols, startRow, startCol, exitRow, exitCol, playerImage, exitImage, isEnabled, callbackFunctionForMove) {
         var mazeObject = {
           
             userImg: playerImage,
@@ -17,7 +19,7 @@ var index = 0;
             movable: isEnabled,
             callbackFunc: callbackFunctionForMove,
 
-
+            //draw the maze on the canvas
             drawMaze: function (nameOfCanvas) {
                 var Canvas1 = document.getElementById(nameOfCanvas);
                 var context1 = Canvas1.getContext("2d");
@@ -36,9 +38,11 @@ var index = 0;
                     }
                 }
 
+                //draw square of player and square of end point 
                 context1.drawImage(this.userImg, this.currPosCol * cellWidth1, this.currPosRow * cellHeight1, cellWidth1, cellHeight1);
                 context1.drawImage(this.endImg, this.goalPosCol * cellWidth1, this.goalPosRow * cellHeight1, cellWidth1, cellHeight1);
 
+                //handle moving by keyboard pressing
                 if (this.movable) {
                     'use strict';
                     document.onkeydown =
@@ -86,7 +90,7 @@ var index = 0;
                 }
             },
 
-
+            //solve maze (add animation of moving from the initial point to the end)
             solveMaze: function (nameOfCanvas,data) {
                 var canvas = document.getElementById(nameOfCanvas);
                 context = canvas.getContext("2d");
@@ -150,6 +154,7 @@ var index = 0;
                     }
                 }, 500);
             },
+            //clear canvas, delete the maze
             clearCanvas: function (nameOfCanvas, isIt) {
                 var canvas = document.getElementById(nameOfCanvas);
                 context = canvas.getContext("2d");
@@ -157,6 +162,7 @@ var index = 0;
                 document.onkeydown = null;
             },         
 
+            //move one step
             move: function (nameOfCanvas, direction) {
                 var Canvas = document.getElementById(nameOfCanvas);
                 context = Canvas.getContext("2d");

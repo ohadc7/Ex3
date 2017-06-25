@@ -12,7 +12,7 @@
     var mazeObject;
 };
 
-
+//start button click - request maze from server and show it
 $("#btnStart").click(function () {
     $(".loader").show();
     var apiUrl = "/SinglePlayer";
@@ -67,6 +67,8 @@ $("#btnStart").click(function () {
 
 });
 
+//solve button click - get solution from the server
+//and show animation of player moving from the initial point to the end
 $("#btnSolve").click(function () {
     var apiUrl = "/SinglePlayer";
     name = $("#mazeName").val();

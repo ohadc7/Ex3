@@ -12,7 +12,7 @@ namespace Ex3A.Controllers
 
         [HttpGet]
         [Route("MultiPlayer")]
-        public List<string> getList()
+        public List<string> GetList()
         {
             return model.List();
         }
@@ -36,7 +36,7 @@ namespace Ex3A.Controllers
 
         [HttpGet]
         [Route("MultiPlayer/{mazeName}/{userName}")]
-        public string getJoin(string mazeName, string userName)
+        public string GetJoin(string mazeName, string userName)
         {
             MultiPlayerDS ds = model.Join(mazeName, userName);
             if (ds != null)

@@ -16,6 +16,15 @@
 var connectionWithOpponent = $.connection.multiPlayerHub;
 var mazeOpponentObject;
 var mazeUserObject;
+//show message on disconnection
+$.connection.hub.reconnecting(function () {
+    new PNotify({
+        title: 'Disconnected',
+        text: 'trying to reconnect to the server',
+        type: 'error'
+    });
+});
+
 // Create a function that the hub can call to broadcast messages
 connectionWithOpponent.client.startPlaying = function () {
     //clear canvases
@@ -36,10 +45,12 @@ connectionWithOpponent.client.startPlaying = function () {
 
 };
 
+//handle move command from the server to the opponent mazeBoard
 connectionWithOpponent.client.updateMove = function (direction) {
     mazeOpponentObject.move('mazeCanvasOpponent', direction);
 };
 
+//create mazes when the game is starting
 function createMazes(obj) {
     var initPosition = obj.Start;
     var goalPosition = obj.End;
@@ -66,7 +77,8 @@ function createMazes(obj) {
             if (playerRow === goalPosition.Row && playerCol === goalPosition.Col) {
                 new PNotify({
                     title: 'You Lose!',
-                    text: 'Your opponent finished the game!'
+                    text: 'Your opponent finished the game!',
+                    type: 'error'
                 });
                 setTimeout(function () {
                     mazeUserObject.clearCanvas('mazeCanvasUser');
@@ -108,6 +120,7 @@ $.connection.hub.start().done(function () {
 
     var myUserName = sessionStorage.getItem("userName");
 
+    //start button click
     $("#btnStart").click(function () {
         $(".loader").show();
         var apiUrl = "/MultiPlayer";
@@ -120,9 +133,10 @@ $.connection.hub.start().done(function () {
                 if (data === "not available") {
                     new PNotify({
                         title: 'Invalid Name!',
-                        text: 'please choose another name!',
+                        text: 'Another maze has this name. Please choose another name!',
                         type: 'error'
                     });
+                    $(".loader").hide();
                     return;
                 }
                 var obj = JSON.parse(data);
@@ -137,8 +151,9 @@ $.connection.hub.start().done(function () {
 
     });
 
+        //join button click
         $("#btnJoin").click(function () {
-           // $(".loader").show();
+            $(".loader").show();
             apiUrl = "/MultiPlayer";
             gamesList = document.getElementById("gamesDropdown");
             selectedGame = gamesList.options[gamesList.selectedIndex].value;
@@ -148,9 +163,10 @@ $.connection.hub.start().done(function () {
                     if (data === "not available") {
                         new PNotify({
                             title: 'invalid Game!',
-                            text: 'this game has started already, please choose another one!',
+                            text: 'this game has already started, please choose another one!',
                             type: 'error'
                         });
+                        $(".loader").hide();
                         return;
                     }
 
