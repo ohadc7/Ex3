@@ -9,7 +9,7 @@
     //var algo = localStorage.getItem("defaultAlgorithm");
     //$("#mazeAlgorithm").html(algo + ' ' + ' <span class="caret"></span>');
 
-}
+};
 
 
 // Declare a proxy to reference the hub
@@ -18,8 +18,6 @@ var mazeOpponentObject;
 var mazeUserObject;
 // Create a function that the hub can call to broadcast messages
 connectionWithOpponent.client.startPlaying = function () {
-    alert("start playing");
-
     //clear canvases
     mazeUserObject.clearCanvas('mazeCanvasUser');
     mazeOpponentObject.clearCanvas('mazeCanvasOpponent');
@@ -39,7 +37,6 @@ connectionWithOpponent.client.startPlaying = function () {
 };
 
 connectionWithOpponent.client.updateMove = function (direction) {
-    //alert("your opponent moved to the direction:" + direction);
     mazeOpponentObject.move('mazeCanvasOpponent', direction);
 };
 
@@ -66,10 +63,10 @@ function createMazes(obj) {
     mazeOpponentObject = $("#mazeCanvasOpponent").mazeBoard(maze2dArray, rows, cols, initPosition.Row,
         initPosition.Col, goalPosition.Row, goalPosition.Col, user2, end2, false,
         function (direction, playerRow, playerCol) {
-            if (playerRow == goalPosition.Row && playerCol == goalPosition.Col) {
+            if (playerRow === goalPosition.Row && playerCol === goalPosition.Col) {
                 new PNotify({
                     title: 'You Lose!',
-                    text: 'Your opponent finished the game!',
+                    text: 'Your opponent finished the game!'
                 });
                 setTimeout(function () {
                     mazeUserObject.clearCanvas('mazeCanvasUser');
@@ -83,16 +80,20 @@ function createMazes(obj) {
         initPosition.Col, goalPosition.Row, goalPosition.Col, user1, end1, true,
         function (direction, playerRow, playerCol) {
             connectionWithOpponent.server.iamMoving(name, direction);
-            if (playerRow == goalPosition.Row && playerCol == goalPosition.Col) {
+            if (playerRow === goalPosition.Row && playerCol === goalPosition.Col) {
                 new PNotify({
                     title: 'You Win!',
                     text: 'You finish the Game!',
-                    type: 'success',
+                    type: 'success'
                 });
                 var url = "/MultiPlayer/Iwon/" + name + "/" + myUserName;
                 $.getJSON(url)
                     .done(function (data) {
-                        alert(data);
+                        var usersController = '/Users/';
+                        $.getJSON(usersController + myUserName + "/" + data + "/dummy/dummy").done(function (data) {
+                        }); 
+
+
                     });
                 setTimeout(function () {
                     mazeUserObject.clearCanvas('mazeCanvasUser');
@@ -100,7 +101,7 @@ function createMazes(obj) {
                 }, 2500);
             }
         });
-};
+}
 
 // Start the connection
 $.connection.hub.start().done(function () {
@@ -108,7 +109,7 @@ $.connection.hub.start().done(function () {
     var myUserName = sessionStorage.getItem("userName");
 
     $("#btnStart").click(function () {
-        //$(".loader").show();
+        $(".loader").show();
         var apiUrl = "/MultiPlayer";
         name = $("#mazeName").val();
         cols = $("#mazeCols").val();
@@ -116,15 +117,18 @@ $.connection.hub.start().done(function () {
 
         $.getJSON(apiUrl + "/" + name + "/" + rows + "/" + cols + "/" + myUserName)
             .done(function (data) {
-                if (data == "not available") {
-                    alert("another maze already has this name. please choose another name.");
+                if (data === "not available") {
+                    new PNotify({
+                        title: 'Invalid Name!',
+                        text: 'please choose another name!',
+                        type: 'error'
+                    });
                     return;
                 }
                 var obj = JSON.parse(data);
                 createMazes(obj);
 
                 // Call the StartGame method on the hub
-                //alert("connect to hub:");
                 connectionWithOpponent.server.startGame(name);
             })
             .fail(function (jqXHR, textStatus, err) {
@@ -141,8 +145,12 @@ $.connection.hub.start().done(function () {
             //thePath = apiUrl + '/' + selectedGame;
             $.getJSON(apiUrl + '/' + selectedGame + "/" + myUserName)
                 .done(function (data) {
-                    if (data == "not available") {
-                        alert("this game isn't available. please choose another game.");
+                    if (data === "not available") {
+                        new PNotify({
+                            title: 'invalid Game!',
+                            text: 'this game has started already, please choose another one!',
+                            type: 'error'
+                        });
                         return;
                     }
 
@@ -151,6 +159,8 @@ $.connection.hub.start().done(function () {
                     createMazes(obj);
 
                     connectionWithOpponent.server.joinGame(selectedGame);
+                    $(".loader").hide();
+
                 })
                 .fail(function (jqXHR, textStatus, err) {
                     $("#product").text("Error: " + err);

@@ -4,6 +4,7 @@
     self.Username = ko.observable();
     self.Password = ko.observable();
     self.login = function () {
+        $(".loader").show();
         var usersUri = '/api/Users/';
         var shaObj = new jsSHA("SHA-256", "TEXT");
         shaObj.update(self.Password());
@@ -11,6 +12,7 @@
         var userName = self.Username();
         var usersExistsUri = '/Users/';
         $.getJSON(usersExistsUri + userName).done(function (data) {
+            $(".loader").hide();
             if (data == "exist") {
                 var usersCheckCorrectUserAndPassword = '/Users/';
                 $.getJSON(usersCheckCorrectUserAndPassword + userName + "/" + hash + "/" + "1").done(function (data) {

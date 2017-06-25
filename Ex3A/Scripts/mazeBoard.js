@@ -102,7 +102,7 @@ var index = 0;
                     len = solveObj.solutionString.length;
                     if (index >= len) {
                         clearInterval(solveObj.interval);
-
+                      
                         setTimeout(function () {
                             var canvas = document.getElementById(nameOfCanvas);
                             context = canvas.getContext("2d");
@@ -148,7 +148,7 @@ var index = 0;
                     if (index < len) {
                         index++;
                     }
-                }, 1000);
+                }, 500);
             },
             clearCanvas: function (nameOfCanvas, isIt) {
                 var canvas = document.getElementById(nameOfCanvas);

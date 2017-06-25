@@ -69,6 +69,24 @@ namespace Ex3A.Controllers
         }
 
 
+
+
+        [HttpGet]
+        [Route("Users/{winner}/{loser}/{dummy1}/{dummy2}")]
+        public bool ChangeUserValue(string winner, string loser)
+        {
+            User winUser =  db.Users.Where(e => e.Name == winner).FirstOrDefault();
+            winUser.Wins++;
+            User loseUser = db.Users.Where(e => e.Name == loser).FirstOrDefault();
+            loseUser.Loses++;
+            db.Entry(winUser).State = EntityState.Modified;
+            db.Entry(loseUser).State = EntityState.Modified;
+            db.SaveChanges();
+            return true;
+        }
+
+
+
         // PUT: api/Users/5
         [ResponseType(typeof(void))]
         public IHttpActionResult PutUser(int id, User user)

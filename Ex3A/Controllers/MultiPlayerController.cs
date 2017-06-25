@@ -53,14 +53,23 @@ namespace Ex3A.Controllers
 
         }
 
+        //return username of the loser player.
         [HttpGet]
-        [Route("MultiPlayer/Iwon/{mazeName}/{myUerName}")]
-        public string IamTheWinner(string mazeName, string myUerName)
+        [Route("MultiPlayer/Iwon/{mazeName}/{myUserName}")]
+        public string IamTheWinner(string mazeName, string myUserName)
         {
-            model.updateWinnerOfGame(mazeName, myUerName);
+            model.updateWinnerOfGame(mazeName, myUserName);
             string startPlayer = model.GetMultiPlayerDataStructure(mazeName).usernameOfStartPlayer;
             string joinPlayer = model.GetMultiPlayerDataStructure(mazeName).usernameOfJoinPlayer;
-            return startPlayer + ", You won the game against " + joinPlayer + ". Shkoyech!";
+            string loserPlayer = "";
+            if (startPlayer == myUserName)
+            {
+                loserPlayer = joinPlayer;
+            } else if (joinPlayer == myUserName)
+            {
+                loserPlayer = startPlayer;
+            }
+            return loserPlayer;
         }
         
 

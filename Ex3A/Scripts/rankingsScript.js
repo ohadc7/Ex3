@@ -27,7 +27,6 @@
 
             counter = 0;
             data.forEach(function (someUser) {
-                //alert("name:" + someUser.Name + ", Wins:" + someUser.Wins + ", Loses:" + someUser.Loses);
                 counter++;
                 someUser.Rank = counter;
             });

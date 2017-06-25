@@ -10,7 +10,7 @@
     $("#mazeAlgorithm").html(algo + ' ' + ' <span class="caret"></span>');
     document.getElementById("mazeAlgorithm").text = algo;
     var mazeObject;
-}
+};
 
 
 $("#btnStart").click(function () {
@@ -19,9 +19,12 @@ $("#btnStart").click(function () {
     name = $("#mazeName").val();
     cols = $("#mazeCols").val();
     rows = $("#mazeRows").val();
-    if (name == "") {
-        alert("please enter name of maze");
-        return;
+    if (name === "") {
+        new PNotify({
+            title: 'Name error!',
+            text: 'You must give name to the game!',
+            type: 'error'
+        });        return;
     }
     $.getJSON(apiUrl + "/" + name + "/" + rows + "/" + cols)
         .done(function (data) {
@@ -42,12 +45,15 @@ $("#btnStart").click(function () {
             }
             mazeObject = $("#mazeCanvasName").mazeBoard(maze2dArray,rows,cols, initPosition.Row, initPosition.Col, goalPosition.Row, goalPosition.Col, user, end, true,
                 function (direction, playerRow, playerCol) {
-                    if (playerRow == goalPosition.Row && playerCol == goalPosition.Col) {
+                    if (playerRow === goalPosition.Row && playerCol === goalPosition.Col) {
                         new PNotify({
                             title: 'You Win!',
                             text: 'You finish the Game!',
-                            type: 'success',
+                            type: 'success'
                         });
+                        setTimeout(function () {
+                            mazeObject.clearCanvas('mazeCanvasName');
+                        }, 2500);
                     }
                 });
             mazeObject.clearCanvas('mazeCanvasName');
@@ -66,7 +72,7 @@ $("#btnSolve").click(function () {
     name = $("#mazeName").val();
     algorithm = $("#mazeAlgorithm").text().trim();
     var algoNum=1;
-    if (algorithm == "BFS") {
+    if (algorithm === "BFS") {
         algoNum = 0;
     }
     
@@ -75,6 +81,15 @@ $("#btnSolve").click(function () {
 
             var solveString = data;
             mazeObject.solveMaze('mazeCanvasName', solveString);
+
+            setTimeout(function () {
+                new PNotify({
+                    title: 'Solve Finish!',
+                    text: 'We solved the game for you!',
+                    type: 'info'
+                });
+            }, 500 * solveString.length);
+            
         })
     .fail(function (jqXHR, textStatus, err) {
         $("#product").text("Error: " + err);
