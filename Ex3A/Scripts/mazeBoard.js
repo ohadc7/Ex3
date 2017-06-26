@@ -96,11 +96,22 @@ var index = 0;
                 context = canvas.getContext("2d");
                 cellWidth = canvas.width / this.cols;
                 cellHeight = canvas.height / this.rows;
+
+                context.clearRect(0, 0, canvas.width, canvas.height);
+                document.onkeydown = null;
+                for (var i = 0; i < this.rows; i++) {
+                    for (var j = 0; j < this.cols; j++) {
+                        if (this.maze[i][j] == 1) {
+                            context.fillRect(cellWidth * j, cellHeight * i, cellWidth, cellHeight);
+                        }
+                    }
+                }
+
                 index = 0;
                 var solveObj = { solutionString: data, interval: null, userImg: this.userImg, currPosRow:this.currPosRow, currPosCol: this.currPosCol, };
                 keyboardIsblocked = true;
                 context.clearRect(this.currPosCol * cellWidth, this.currPosRow * cellHeight, cellWidth, cellHeight);
-               
+                context.drawImage(this.endImg, this.goalPosCol * cellWidth, this.goalPosRow * cellHeight, cellWidth, cellHeight);               
                 context.drawImage(this.userImg, this.currPosCol * cellWidth, this.currPosRow * cellHeight, cellWidth, cellHeight);
                 solveObj.interval = setInterval(function() {
                     len = solveObj.solutionString.length;
@@ -111,7 +122,7 @@ var index = 0;
                             var canvas = document.getElementById(nameOfCanvas);
                             context = canvas.getContext("2d");
                             context.clearRect(0, 0, canvas.width, canvas.height);
-                            document.onkeydown = null;
+                            //document.onkeydown = null;
                         }, 2500);
 
                         keyboardIsblocked = false;
