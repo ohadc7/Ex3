@@ -127,7 +127,30 @@ $.connection.hub.start().done(function () {
         name = $("#mazeName").val();
         cols = $("#mazeCols").val();
         rows = $("#mazeRows").val();
-
+        if (name === "") {
+            new PNotify({
+                text: 'You must give name to the game!',
+                type: 'error'
+            });
+            $(".loader").hide();
+            return;
+        }
+        if (rows === "") {
+            new PNotify({
+                text: 'You must set number of rows!',
+                type: 'error'
+            });
+            $(".loader").hide();
+            return;
+        }
+        if (cols === "") {
+            new PNotify({
+                text: 'You must set number of columns!',
+                type: 'error'
+            });
+            $(".loader").hide();
+            return;
+        }
         $.getJSON(apiUrl + "/" + name + "/" + rows + "/" + cols + "/" + myUserName)
             .done(function (data) {
                 if (data === "not available") {
@@ -141,6 +164,7 @@ $.connection.hub.start().done(function () {
                 }
                 var obj = JSON.parse(data);
                 createMazes(obj);
+                document.title = name;
 
                 // Call the StartGame method on the hub
                 connectionWithOpponent.server.startGame(name);
@@ -156,8 +180,15 @@ $.connection.hub.start().done(function () {
             $(".loader").show();
             apiUrl = "/MultiPlayer";
             gamesList = document.getElementById("gamesDropdown");
-            selectedGame = gamesList.options[gamesList.selectedIndex].value;
-            //thePath = apiUrl + '/' + selectedGame;
+            if (-1 === gamesList.selectedIndex) {
+                new PNotify({
+                    text: 'You must choose game from the list!',
+                    type: 'error'
+                });
+                $(".loader").hide();
+                return;
+            }
+            selectedGame = gamesList.options[gamesList.selectedIndex].value;            
             $.getJSON(apiUrl + '/' + selectedGame + "/" + myUserName)
                 .done(function (data) {
                     if (data === "not available") {
@@ -173,7 +204,7 @@ $.connection.hub.start().done(function () {
                     name = selectedGame;
                     var obj = JSON.parse(data);
                     createMazes(obj);
-
+                    document.title = selectedGame;
                     connectionWithOpponent.server.joinGame(selectedGame);
                     $(".loader").hide();
 

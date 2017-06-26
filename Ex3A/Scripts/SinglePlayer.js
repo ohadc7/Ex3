@@ -21,10 +21,27 @@ $("#btnStart").click(function () {
     rows = $("#mazeRows").val();
     if (name === "") {
         new PNotify({
-            title: 'Name error!',
             text: 'You must give name to the game!',
             type: 'error'
-        });        return;
+        });
+        $(".loader").hide();
+        return;
+    }
+    if (rows === "") {
+        new PNotify({
+            text: 'You must set number of rows!',
+            type: 'error'
+        });
+        $(".loader").hide();
+        return;
+    }
+    if (cols === "") {
+        new PNotify({
+            text: 'You must set number of columns!',
+            type: 'error'
+        });
+        $(".loader").hide();
+        return;
     }
     $.getJSON(apiUrl + "/" + name + "/" + rows + "/" + cols)
         .done(function (data) {
@@ -59,6 +76,7 @@ $("#btnStart").click(function () {
             mazeObject.clearCanvas('mazeCanvasName');
             mazeObject.drawMaze('mazeCanvasName');
             $(".loader").hide();
+            document.title = name;
             $('#mazeCanvasName').show();
         })
         .fail(function (jqXHR, textStatus, err) {
